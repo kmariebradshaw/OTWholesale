@@ -1,0 +1,134 @@
+<section class="page-header background-pink tac">
+	<%= image_tag("logo.png", class: "logo") %>
+	<h1 class="nm accent">Oliver Thomas Wholesale Application</h1>
+</section>
+<section class="form-faq">
+	<p class="tac">Ollie is thrilled that you are applying to be part of the Oliver Thomas family!</p>
+	<p>Please complete and submit the following documents</p>
+	<ol>
+		<li>Wholesale Application Form (this form)</li>
+		<li>Your State Resale Certificate - <a href="https://theoliverthomaswholesale.com/pages/tax-forms" target="_blank">click here to download an electronic PDF for your state</a> (application cannot be approved without a signed copy)</li>
+	</ol>
+	<p class="nmb">For assistance, please email <a href="mailto: Ollie@TheOliverThomas.com">Ollie@TheOliverThomas.com</a> or call customer service (833) 221-0345.</p>
+	<p class="subscript nmt">Once we receive all your information, we will review and send a notification email with further directions (typically 2 - 4 business days).</p>
+</section>
+<%= form_for @customer do |f| %>
+<p class="form-header ttu background-pink">Business Information</p>
+	<section class="form-section">
+		<p><b>Legal Entity Business Name:</b> <%= f.text_field :company %></p>
+		<p><b>DBA </b><em>("Doing Business As" - enter N/A if it doesn't apply):</em> <%= f.text_field :dba %></p>
+	 	<p><b>State Resale/Tax Exemption Certificate #: </b><%= f.text_field :permit %> <b>State Issued:</b> <%= f.text_field :seller_permit_state %> </p>
+	 	<p><b># Of Retail Locations:</b></p>
+
+
+		<%= f.radio_button  :locations,"1" %>
+		<%= f.label :locations, "1" %>
+		<%= f.radio_button  :locations,"2" %>
+		<%= f.label :locations, "2" %>
+		<%= f.radio_button  :locations,"3-5" %>
+		<%= f.label :locations, "3-5" %>
+		<%= f.radio_button  :locations,"6-9" %>
+		<%= f.label :locations, "6-9" %>
+		<%= f.radio_button  :locations,"10+" %>
+		<%= f.label :locations, "10+" %>
+	 	<p><b>Type of Business:</b></p>
+	 	<%= f.radio_button  :legal_status,"Sole Proprietor" %>
+		<%= f.label :legal_status, "Sole Proprietor" %>
+		<%= f.radio_button  :legal_status,"Partnership" %>
+		<%= f.label :legal_status, "Partnership" %>	
+		<%= f.radio_button  :legal_status,"LLC" %>
+		<%= f.label :legal_status, "LLC" %>
+		<%= f.radio_button  :legal_status,"Corporation" %>
+		<%= f.label :legal_status, "Corporation" %>
+	 	<p class="subscript"><em><span class="ttu">Note:</span> Oliver Thomas (A Division of Black Diamond Group) must be promptly informed of any later changes in your legal status.</em></p>
+	</section>
+<p class="form-header ttu background-pink">Billing Information</p>
+	<section class="form-section">
+		<p><b>Street Address:</b> <%= f.text_field :billing_addr %></p>
+		<p><b>City:</b> <%= f.text_field :billing_city %> <b>State:</b> <%= f.text_field :billing_state %> <b>Zip Code:</b> <%= f.text_field :billing_zip %></p>
+	 	<p><b>AP Contact:</b> <%= f.text_field :billing_ap %> <b>AP Phone:</b> <%= f.text_field :billing_phone %> </p>
+		<p><b>AP Email Address:</b> <%= f.text_field :billing_email %> </p>
+	</section>
+<p class="form-header ttu background-pink">Shipping Information</p>
+	<section class="form-section">
+		<p><b>Street Address:</b> <%= f.text_field :shipping_address %></p>
+		<p><b>City:</b> <%= f.text_field :shipping_location %> <b>State:</b> <%= f.text_field :shipping_state %> <b>Zip Code:</b> <%= f.text_field :shipping_zip %></p>
+	</section>
+<!-- <p class="form-header ttu background-pink">Physical Primary Store Location</p>
+ -->
+<p class="form-header ttu background-pink">Buyer Contact Information</p>
+	<section class="form-section">
+		<p><b>Buyer's Name:</b> <%= f.text_field :name %></p>
+		<p><b>Buyer's Phone:</b> <%= f.text_field :phone %></p>
+		<p><b>Buyer's Email Address:</b> <%= f.text_field :email %></p>
+		<p><b>Top 3 Selling Lines in your Boutique</b></p>
+		<%= f.text_field :top3_1 %><%= f.text_field :top3_2 %><%= f.text_field :top3_3 %>
+		<p><b>Social Media Sites:</b> (Enter N/A if Not Applicable):</p>
+	    <p><b>Facebook ID:</b> <%= f.text_field :facebook %> <b>Instagram Handle:</b><%= f.text_field :instagram %></p>
+	</section>
+<p class="form-header ttu background-pink">Terms and Conditions</p>
+<section>
+	<p><b>If you are accepted as a vendor of Oliver Thomas, you will abide by the following terms and conditions:</b></p>
+	<ol>
+		<li>Customers will not sell Oliver Thomas products on their website, social media accounts or any other online. avenues unless a prior written agreement with Oliver Thomas (division of Black Diamond Group, Inc.) is in place.</li>
+		<li>Customers will not sell Oliver Thomas products outside of their brick-and-mortar store including pop-ups, seasonal markets, etc...</li>
+		<li>There is no selling below MSRP.</li>
+		<li>Order Minimums: <b>New Account Initial Order</b>-$1000.00; <b>Reorder</b>-$400.00; <b>Small Order Fee</b> - $40 charge for orders that are placed under the $400 minimum reorder amount.</li>
+		<li>View the full list of the <a href="https://theoliverthomaswholesale.com/pages/terms-and-conditions">Oliver Thomas Terms and Conditions</a></li>
+	</ol>
+	 <p><%= f.check_box :agree1 %> I Agree</p>
+	 <p><%= f.check_box :agree2 %> I represent and warrant that all financial and other information provided to the Oliver Thomas in connection with this application and, if accepted, my account, is and will be true.</p>
+</section>
+<p class="form-header ttu background-pink">How did you hear about us?</p>
+	<section>
+ 		<p>Tradshow:</p>
+		<%= f.radio_button :referral_source,"Stylemax" %>
+		<%= f.label :referral_source, "Stylemax" %>
+		<%= f.radio_button :referral_source,"Coterie NY" %>
+		<%= f.label :referral_source, "Coterie NY" %>
+		<%= f.radio_button :referral_source,"Active Collective NY" %>
+		<%= f.label :referral_source, "Active Collective NY" %>
+		<%= f.radio_button :referral_source,"Active Collective CA" %>
+		<%= f.label :referral_source, "Active Collective CA" %>
+	    <%= f.radio_button :referral_source,"Atlanta Giftmart" %>
+	    <%= f.label :referral_source, "Atlanta Giftmart" %>
+		<%= f.radio_button :referral_source,"Accessories Circuit" %>
+		<%= f.label :referral_source, "Accessories Circuit" %>
+		<%= f.radio_button :referral_source,"PGA" %>
+		<%= f.label :referral_source, "PGA" %>
+		<br><br>
+		<%= f.label :referral_source, "Facebook" %>
+		<%= f.radio_button :referral_source,"Facebook" %><br>
+		<%= f.label :referral_source, "Instagram" %>
+		<%= f.radio_button :referral_source,"Instagram" %><br>
+		<%= f.label :referral_source, "Google / Internet Search" %>
+		<%= f.radio_button :referral_source,"Google / Internet Search" %><br>
+		<%= f.label :referral_source, "Friend / Family" %>
+		<%= f.radio_button :referral_source,"Friend / Family" %><br>
+	    <%= f.label :referral_source, "On-site Visit" %>
+		<%= f.radio_button :referral_source,"On-site Visit" %><br>
+	    <p>Other: <%= f.text_field :referral_source_other %></p>
+	</section>
+      <div class="button">
+      <span><%= f.submit %></span>
+    </div> 
+<% end %>
+<style>
+	.page-header { padding: 50px; }
+	.tac { text-align: center; }
+	.form-header { 
+		font-weight: bold;
+		padding: 15px;
+	}
+	.logo { margin-bottom: 10px; }
+	.nm { margin: 0; }
+	.nmb { margin-bottom: 0; }
+	.nmt { margin-top: 0; }
+	.ttu { text-transform: uppercase; }
+	.background-pink { background-color: #f6e1d9; }
+	.subscript { font-size: 10pt; }
+	input { 
+		border: none;
+		border-bottom: 1px solid black;
+	}
+</style>

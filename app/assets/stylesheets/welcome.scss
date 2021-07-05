@@ -1,0 +1,49 @@
+// Place all the styles related to the Welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+@font-face {
+  font-family: 'the_wild_things_script';
+  src: font-url('the-wild-things-script.otf'); 
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'neutra';
+  src: font-url('Neutra2Display-Medium.otf'); 
+  font-weight: 400; 
+  font-style: normal;
+}
+
+ .form-faq {
+    font-family: 'neutra';  
+  }
+.form-faq p, .form-faq ol li { font-size: 16pt;}
+.form-faq p.subscript { font-size: 12pt;}
+ .accent {
+    font-family: 'the_wild_things_script';  
+  }
+body { font-family: Helvetica;}
+section { padding: 20px;}
+h1 { font-size: 36pt;}
+.logo { 
+	max-width: 200px;
+}
+body { margin: 0;}
+  .page-header { padding: 50px; }
+  .tac { text-align: center; }
+  .form-header { 
+    font-weight: bold;
+    padding: 15px;
+  }
+  .logo { margin-bottom: 10px; }
+  .nm { margin: 0; }
+  .nmb { margin-bottom: 0; }
+  .nmt { margin-top: 0; }
+  .ttu { text-transform: uppercase; }
+  .background-pink { background-color: #f6e1d9; }
+  .subscript { font-size: 10pt; }
+  input { 
+    border: none;
+    border-bottom: 1px solid black;
+  }

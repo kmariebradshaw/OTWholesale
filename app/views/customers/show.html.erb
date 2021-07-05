@@ -1,0 +1,49 @@
+<section class="page-header background-pink tac">
+	<%= image_tag("logo.png", class: "logo") %>
+	<h1 class="nm accent">Oliver Thomas Wholesale Application</h1>
+</section>
+<section class="tac">
+	<h2 class=" nmt">Status: <%= @customer.status %></h2>
+		 <button><%= link_to "Edit", edit_customer_path(@customer) %></button>
+ <button><%= link_to "Destroy", customer_path(@customer),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %></button>
+</section>
+
+<p class="form-header ttu background-pink">Business Information</p>
+	<section class="form-section">
+		<p><b>Legal Entity Business Name:</b> <%= @customer.company %></p>
+		<p><b>DBA:</b> <%= @customer.dba %></p>
+		<p><b>State Resale/Tax Exemption Certificate #:</b> <%= @customer.permit %> <b>State Issued:</b> <%= @customer.seller_permit_state %></p>
+  		<p><b># Of Retail Locations:</b><%= @customer.locations %><br>
+	 	<p><b>Type of Business:</b> <%= @customer.legal_status %></p>
+	</section>
+<p class="form-header ttu background-pink">Billing Information</p>
+	<section class="form-section">
+		<p><b>Street Address:</b> <%= @customer.billing_addr %></p>
+		<p><b>City:</b> <%= @customer.billing_city %> <b>State:</b> <%= @customer.billing_state %> <b>Zip Code:</b> <%= @customer.billing_zip %></p>
+		<p><b>AP Contact:</b> <%= @customer.billing_ap %></p>
+		<p><b>AP Phone:</b> <%= @customer.billing_phone %></p>
+		<p><b>AP Email Address:</b> <%= @customer.billing_email%></p>
+	</section>
+<p class="form-header ttu background-pink">Shipping Information</p>
+	<section class="form-section">
+		<p><b>Street Address:</b> <%= @customer.shipping_address %></p>
+		<p><b>City:</b> <%= @customer.shipping_location %> <b>State:</b> <%= @customer.shipping_state %> <b>Zip Code:</b> <%= @customer.shipping_zip %></p>
+	</section>
+<p class="form-header ttu background-pink">Buyer Contact Information</p>
+	<section class="form-section">
+		<p><b>Buyer's Name:</b> <%= @customer.name %></p>
+		<p><b>Buyer's Phone:</b> <%= @customer.phone %></p>
+		<p><b>Buyer's Email Address:</b> <%= @customer.email %></p>
+		<p><b>Top 3 Selling Lines in your Boutique</b></p>
+		<ul>
+			<li><%= @customer.top3_1 %></li>
+			<li><%= @customer.top3_2 %></li>
+			<li><%= @customer.top3_3 %></li>
+		</ul>
+		<p><b>Social Media Sites</b></p>
+	    <p><b>Facebook ID:</b> <%= @customer.facebook %></p>
+		<p><b>Instagram Handle:</b> <%= @customer.instagram %></p>
+	</section>
+
