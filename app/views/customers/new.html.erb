@@ -12,7 +12,7 @@
 	<p class="nmb">For assistance, please email <a href="mailto: Ollie@TheOliverThomas.com">Ollie@TheOliverThomas.com</a> or call customer service (833) 221-0345.</p>
 	<p class="subscript nmt">Once we receive all your information, we will review and send a notification email with further directions (typically 2 - 4 business days).</p>
 </section>
-<%= form_for (@customer, remote: true) do |f| %>
+<%= form_for @customer, :remote => true do |f| %>
 <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 <p class="form-header ttu background-pink">Business Information</p>
 	<section class="form-section">
