@@ -23,7 +23,7 @@
  .accent {
     font-family: 'the_wild_things_script';  
   }
-body { font-family: Helvetica;}
+body, input { font-family: 'Open Sans', sans-serif;}
 section { padding: 20px;}
 h1 { font-size: 36pt;}
 .logo { 
@@ -48,3 +48,52 @@ body { margin: 0;}
     border-bottom: 1px solid black;
   }
   .heart-print { max-width: 100px;}
+  div.border-bottom-pink { background-color: #f6e1d9; height: 2px;}
+  .fw { width: 100%;}
+  .tar { text-align: right;}
+  .accent-padding-so { padding: 0 20px;}
+
+.border-bottom-pink { border-bottom: #f6e1d9;}
+
+
+.ot-employee form input[type="email"], .ot-employee form input[type="password"] {
+    width: 90%;
+    font-size: 10pt;
+    line-height: 2;
+    padding: 10px;
+    border: 1px solid #d1cdcd;
+    box-sizing: border-box;
+    background: white;
+    border-radius: 5px;
+    margin: 6px;
+    display: block;
+    margin: 10px auto;
+}
+.background-paca { display: block; margin: 0 auto; max-width: 100%; }
+.ot-employee form {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+    min-width: 275px;
+    max-width: 500px;
+}
+
+.ot-employee input[type=submit] {
+    font-size: 12pt;
+    line-height: 2;
+    width: 90%;
+    padding: 10px;
+    color: white;
+    display: block;
+    margin: 20px auto;
+    box-shadow: none;
+    border: none;
+    border-radius: 5px;
+    -webkit-appearance: none;
+    background: #f6e1d9;
+}
+.ot-employee .field .subscript {
+    display: inline-block;
+    margin-left: 5%;
+}
+.clickable { cursor: pointer; }
