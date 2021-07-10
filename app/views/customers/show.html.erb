@@ -4,6 +4,14 @@
 </section>
 <section class="tac">
 	<h2 class=" nmt">Status: <%= @customer.status %></h2>
+	       <%= form_for(@customer, remote: true, :html => {:class => "ib"}) do |fa| %>
+            <%= fa.hidden_field :status, :value => "Approved" %>
+            <%= fa.submit "approve", class: "decision approval ib" %>
+          <% end %>
+          	       <%= form_for(@customer, remote: true, :html => {:class => "ib"}) do |fa| %>
+            <%= fa.hidden_field :status, :value => "Denied" %>
+            <%= fa.submit "deny", class: "decision approval ib" %>
+          <% end %>
 		 <button><%= link_to "Edit", edit_customer_path(@customer) %></button>
  <button><%= link_to "Destroy", customer_path(@customer),
                   method: :delete,
