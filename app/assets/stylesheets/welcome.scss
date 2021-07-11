@@ -23,7 +23,7 @@
  .accent {
     font-family: 'the_wild_things_script';  
   }
-body { font-family: Helvetica;}
+body, input { font-family: 'Open Sans', sans-serif;}
 section { padding: 20px;}
 h1 { font-size: 36pt;}
 .logo { 
@@ -38,7 +38,7 @@ body { margin: 0;}
   }
   .logo { margin-bottom: 10px; }
   .nm { margin: 0; }
-  .nmb { margin-bottom: 0; }
+  .nmb { margin-bottom: 0 !important; }
   .nmt { margin-top: 0; }
   .ttu { text-transform: uppercase; }
   .background-pink { background-color: #f6e1d9; }
@@ -48,3 +48,88 @@ body { margin: 0;}
     border-bottom: 1px solid black;
   }
   .heart-print { max-width: 100px;}
+  div.border-bottom-pink { background-color: #f6e1d9; height: 2px;}
+  .fw { width: 100%;}
+  .tar { text-align: right;}
+  .accent-padding-so { padding: 0 20px;}
+
+.border-bottom-pink { border-bottom: #f6e1d9;}
+
+
+.ot-employee form input[type="email"], .ot-employee form input[type="password"] {
+    width: 90%;
+    font-size: 10pt;
+    line-height: 2;
+    padding: 10px;
+    border: 1px solid #d1cdcd;
+    box-sizing: border-box;
+    background: white;
+    border-radius: 5px;
+    margin: 6px;
+    display: block;
+    margin: 10px auto;
+}
+.background-paca { display: block; margin: 0 auto; max-width: 100%; }
+.ot-employee form {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+    min-width: 275px;
+    max-width: 500px;
+}
+
+.ot-employee input[type=submit], .new-submit {
+    font-size: 12pt;
+    line-height: 2;
+    width: 90%;
+    padding: 10px;
+    display: block;
+    margin: 20px auto;
+    box-shadow: none;
+    border: none;
+    border-radius: 5px;
+    -webkit-appearance: none;
+    background: #f6e1d9;
+        box-shadow: 1px 2px 3px lightgrey;
+        font-weight: bold;
+}
+.ot-employee .field .subscript {
+    display: inline-block;
+    margin-left: 5%;
+}
+
+.clickable { cursor: pointer; }
+
+
+.form-section input[type="text"] {
+    font-size: 10pt;
+    line-height: 2;
+    padding: 10px;
+    border: 1px solid #d1cdcd;
+    box-sizing: border-box;
+    background: white;
+    border-radius: 5px;
+    margin: 6px;
+    display: block;
+    margin: 0 auto 10px auto;
+}
+
+
+.approval-denial form, .approval-denial button {
+  display: inline-block;
+  margin: 5px;
+}
+
+.approval-denial input, .approval-denial button { 
+  background-color: #f6e1d9;
+  padding: 10px 20px; 
+  width: 200px; 
+  font-weight: bold;
+  box-shadow: 1px 1px 3px gray;
+}
+
+.flex-container-no { display: flex; align-items: center;}
+.two-thirds { width: 66%;}
+.one-third { width: 33%;}
+.fmr { margin-right: 10px !important; }
+.half { width: 50%; }

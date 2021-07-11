@@ -1,0 +1,39 @@
+<% if notice %>
+  <p class="alert alert-success tac subscript"><%= notice %></p>
+<% end %>
+<% if alert %>
+  <p class="alert alert-danger tac subscript"><%= alert %></p>
+<% end %>
+
+
+<section class="main ot-employee">
+  <div class="accent-padding">
+    <h1 class="tac nmb accent">Log In to Your Account</h1>
+  </div>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field">
+    <%= f.email_field :email, placeholder: "Email",  autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.password_field :password, placeholder: "Password", autocomplete: "current-password" %>
+  </div>
+
+  <% if devise_mapping.rememberable? -%>
+    <div class="field">
+      <p class="subscript"><%= f.check_box :remember_me %>
+      <%= f.label :remember_me %></p>
+    </div>
+  <% end %>
+
+  <div class="actions clickable">
+    <%= f.submit "Log In" %>
+  </div>
+  <p class="tac nmt">Don't have an account? <a href="/users/sign_up" class="border-bottom-pink">Sign up here.</a></p>
+
+<% end %>
+<div class="tac">
+    <%= image_tag("paw-heart-print.png", class: "heart-print") %>
+</div>
+</section>

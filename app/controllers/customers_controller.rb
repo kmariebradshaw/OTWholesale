@@ -1,6 +1,5 @@
 class CustomersController < ApplicationController
-    skip_before_action :verify_authenticity_token
-
+skip_before_action :authenticate_user!, only: [:new, :create,:index]
   def new 
     @customer = Customer.new()
 	end 
@@ -14,6 +13,7 @@ class CustomersController < ApplicationController
     end 
   end 
   def show
+
     @customer = Customer.find(params[:id]) 
   end 
   def index

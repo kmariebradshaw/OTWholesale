@@ -3,10 +3,37 @@
 	<h1 class="nm accent">Oliver Thomas Wholesale Application</h1>
 </section>
 <section>
-	<h2>Pending Applications</h2>
-	<ul>
+	<% if @pending_customers.count > 0 %>
+	<h1 class="tac accent">Pending Applications</h1>
 	<% @pending_customers.each do |application| %>
-	     <li> <%= link_to application.company, application %> </li>
+		<div class="application-preview">
+		    <p><%= link_to 'Review Application', application %></p>
+			<p><b>Legal Entity Business Name:</b> <%= application.company %></p>
+			<p><b>DBA:</b> <%= application.dba %></p>
+			<p><b>State Resale/Tax Exemption Certificate #:</b> <%= application.permit %> <b>State Issued:</b> <%= application.seller_permit_state %></p>
+	  		<p><b># Of Retail Locations:</b> <%= application.locations %><br></p>
+		 	<p><b>Type of Business:</b> <%= application.legal_status %></p> 
+		</div>
 	<% end %>
-	</ul>
+	<% else %>
+	<h1 class="tac nm accent">All Caught Up</h1>
+		<p class="nmt tac">No New Applications to Review</p>
+	<% end %>
+</section>
+<section class="background-pink">
+	<h1 class="tac accent nm">View Previous Applications</h1>
+	<p class="nmt tac nmt">Edit or Remove Current Wholesale Customers</p>
+</section>
+<section class="accent-padding">
+	<% @decision_customers.each do |application| %>
+		<div class="application-preview">
+		    <p><%= link_to 'Review Application', application %> - <%=application.status %></p>
+			<p><b>Legal Entity Business Name:</b> <%= application.company %></p>
+			<p><b>DBA:</b> <%= application.dba %></p>
+			<p><b>State Resale/Tax Exemption Certificate #:</b> <%= application.permit %> <b>State Issued:</b> <%= application.seller_permit_state %></p>
+	  		<p><b># Of Retail Locations:</b> <%= application.locations %><br></p>
+		 	<p><b>Type of Business:</b> <%= application.legal_status %></p> 
+		</div>
+		<div class="fw border-bottom-pink"></div>
+	<% end %>
 </section>
