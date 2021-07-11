@@ -1,23 +1,23 @@
 <section class="page-header background-pink tac">
 	<%= image_tag("logo.png", class: "logo") %>
 	<h1 class="nm accent">Oliver Thomas Wholesale Application</h1>
+			 <%= link_to "Edit", edit_customer_path(@customer) %> |
+   <%= link_to "Delete", customer_path(@customer),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %><br>
 </section>
-<section class="tac">
+<section class="tac approval-denial">
 	<h2 class=" nmt">Status: <%= @customer.status %></h2>
+
 	       <%= form_for(@customer, remote: true, :html => {:class => "ib"}) do |fa| %>
             <%= fa.hidden_field :status, :value => "Approved" %>
-            <%= fa.submit "approve", class: "decision approval ib" %>
+            <%= fa.submit "Approve", class: "decision approval ib" %>
           <% end %>
           	       <%= form_for(@customer, remote: true, :html => {:class => "ib"}) do |fa| %>
             <%= fa.hidden_field :status, :value => "Denied" %>
-            <%= fa.submit "deny", class: "decision approval ib" %>
-          <% end %>
-		 <button><%= link_to "Edit", edit_customer_path(@customer) %></button>
- <button><%= link_to "Destroy", customer_path(@customer),
-                  method: :delete,
-                  data: { confirm: "Are you sure?" } %></button>
+            <%= fa.submit "Deny", class: "decision approval ib" %>
+          <% end %><br>
 </section>
-
 <p class="form-header ttu background-pink">Business Information</p>
 	<section class="form-section">
 		<p><b>Legal Entity Business Name:</b> <%= @customer.company %></p>

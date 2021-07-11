@@ -38,7 +38,7 @@ body { margin: 0;}
   }
   .logo { margin-bottom: 10px; }
   .nm { margin: 0; }
-  .nmb { margin-bottom: 0; }
+  .nmb { margin-bottom: 0 !important; }
   .nmt { margin-top: 0; }
   .ttu { text-transform: uppercase; }
   .background-pink { background-color: #f6e1d9; }
@@ -78,12 +78,11 @@ body { margin: 0;}
     max-width: 500px;
 }
 
-.ot-employee input[type=submit] {
+.ot-employee input[type=submit], .new-submit {
     font-size: 12pt;
     line-height: 2;
     width: 90%;
     padding: 10px;
-    color: white;
     display: block;
     margin: 20px auto;
     box-shadow: none;
@@ -91,9 +90,46 @@ body { margin: 0;}
     border-radius: 5px;
     -webkit-appearance: none;
     background: #f6e1d9;
+        box-shadow: 1px 2px 3px lightgrey;
+        font-weight: bold;
 }
 .ot-employee .field .subscript {
     display: inline-block;
     margin-left: 5%;
 }
+
 .clickable { cursor: pointer; }
+
+
+.form-section input[type="text"] {
+    font-size: 10pt;
+    line-height: 2;
+    padding: 10px;
+    border: 1px solid #d1cdcd;
+    box-sizing: border-box;
+    background: white;
+    border-radius: 5px;
+    margin: 6px;
+    display: block;
+    margin: 0 auto 10px auto;
+}
+
+
+.approval-denial form, .approval-denial button {
+  display: inline-block;
+  margin: 5px;
+}
+
+.approval-denial input, .approval-denial button { 
+  background-color: #f6e1d9;
+  padding: 10px 20px; 
+  width: 200px; 
+  font-weight: bold;
+  box-shadow: 1px 1px 3px gray;
+}
+
+.flex-container-no { display: flex; align-items: center;}
+.two-thirds { width: 66%;}
+.one-third { width: 33%;}
+.fmr { margin-right: 10px !important; }
+.half { width: 50%; }
