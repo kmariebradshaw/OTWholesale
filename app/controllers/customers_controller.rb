@@ -1,5 +1,5 @@
 class CustomersController < ApplicationController
-# skip_before_action :authenticate_user!, only: [:new, :create,:index]
+skip_before_action :authenticate_user!, only: [:new, :create,:index]
   def new 
     @customer = Customer.new()
 	end 
