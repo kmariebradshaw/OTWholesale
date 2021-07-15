@@ -86,7 +86,7 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
 config.action_mailer.delivery_method = :smtp
-host = 'otwholesale.herokuapp.com'
+host = 'othwholesaleapp.herokuapp.com'
 config.action_mailer.default_url_options = { host: host }
 
 # SMTP settings for gmail
