@@ -26,6 +26,23 @@ skip_before_action :authenticate_user!, only: [:new, :create,:index]
   def update
     @customer = Customer.find(params[:id]) 
      if @customer.update(customer_params)
+      if @customer.status == "Approved"
+        new_customer = ShopifyAPI::Customer.new
+        new_customer.first_name = @customer.company
+        new_customer.last_name = @customer.name
+        new_customer.email = @customer.email
+        new_customer.phone = @customer.phone
+        new_customer.address1 = @customer.shipping_address
+        new_customer.city = @customer.shipping_location
+        new_customer.province = @customer.shipping_state
+        new_customer.zip = @customer.shipping_zip
+        new_customer.send_email_invite = true 
+        if new_customer.save 
+          puts "saved"
+        else 
+          puts "error"
+        end 
+      end 
       redirect_to @customer
     else
       render :edit
