@@ -1,0 +1,2 @@
+module CustomerMailerHelper
+end

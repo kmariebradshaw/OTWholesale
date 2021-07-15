@@ -7,6 +7,7 @@ skip_before_action :authenticate_user!, only: [:new, :create,:index]
     @customer = Customer.new(customer_params)
 
     if @customer.save
+      CustomerMailer.with(customer: @customer).new_customer_email.deliver_later
       redirect_to '/customers'
     else
       render 'new'
