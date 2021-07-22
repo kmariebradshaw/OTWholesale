@@ -1,2 +1,7 @@
-SHOPIFY_API_KEY=<copy and paste your key here>
-SHOPIFY_API_PASSWORD=<copy and paste your secret here>
+SHOPIFY_API_KEY: "bf800aaa4d4c3b29f1a5629d886e7519"
+SHOPIFY_API_PASSWORD: "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"
+GMAIL_PASSWORD: "apsbmjpdmyonpukj"
+GMAIL_USERNAME: "otwholesaleapp@gmail.com"
+SEND_TO_GMAIL: "kaitlynmbradshaw@gmail.com"
+SHOP_NAME: "black-diamond-group-oliver-thomas-wholesale"
+
