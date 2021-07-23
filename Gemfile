@@ -25,7 +25,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise'
 gem 'shopify_api'
 gem 'dotenv-rails', groups: [:development, :test]
-
+gem 'carrierwave'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
