@@ -18,6 +18,9 @@
             <%= fa.submit "Deny", class: "decision approval ib" %>
           <% end %><br>
 </section>
+<section>
+	 <p class="tac"><%= link_to "Resale Certification", @customer.attachement_url %></p>
+</section>
 <p class="form-header ttu background-pink">Business Information</p>
 	<section class="form-section">
 		<p><b>Legal Entity Business Name:</b> <%= @customer.company %></p>

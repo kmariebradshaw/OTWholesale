@@ -133,6 +133,11 @@
 	    <%= f.label :referral_source, "On-site Visit" %><br><br>
 	    <%= f.text_field :referral_source_other, placeholder: "Other", class: "fw nmb" %>
 	</section>
+<p class="form-header ttu background-pink">Upload Resale Certification</p>
+	<section class="form-section">
+		<%= f.file_field :attachement %>
+	</section>
+
      <%= f.submit "Submit Application", class: "new-submit" %>
 <% end %>
 <style>
