@@ -41,7 +41,7 @@ skip_before_action :authenticate_user!, only: [:new, :create,:index]
           puts "saved"
         else 
           puts "error"
-        end 
+        end  
       end 
       redirect_to @customer
     else
@@ -50,7 +50,7 @@ skip_before_action :authenticate_user!, only: [:new, :create,:index]
   end 
   def destroy
     @customer = Customer.find(params[:id])
-    @customer.destroy
+    @customer.destroy!
 
     redirect_to root_path
   end
