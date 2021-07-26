@@ -41,7 +41,9 @@ skip_before_action :authenticate_user!, only: [:new, :create,:index]
           puts "saved"
         else 
           puts "error"
-        end  
+        end 
+      elsif @customer.status == "Denied"
+        CustomerMailer.with(customer: @customer).reject_customer_email.deliver_later
       end 
       redirect_to @customer
     else
