@@ -42,6 +42,8 @@ skip_before_action :authenticate_user!, only: [:new, :create,:index]
         else 
           puts "error"
         end 
+      elsif @customer.status == "Denied"
+        CustomerMailer.with(customer: @customer).reject_customer_email.deliver_later
       end 
       redirect_to @customer
     else
@@ -50,7 +52,7 @@ skip_before_action :authenticate_user!, only: [:new, :create,:index]
   end 
   def destroy
     @customer = Customer.find(params[:id])
-    @customer.destroy
+    @customer.destroy!
 
     redirect_to root_path
   end
