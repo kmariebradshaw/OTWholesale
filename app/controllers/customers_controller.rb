@@ -52,8 +52,8 @@ skip_before_action :authenticate_user!, only: [:new, :create,:index]
   end 
   def destroy
     @customer = Customer.find(params[:id])
-    @customer.destroy!
-
+    @customer.destroy
+    puts 'hit path'
     redirect_to root_path
   end
   private 
