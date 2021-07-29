@@ -23,6 +23,7 @@
 <section class="background-pink">
 	<h1 class="tac accent nm">View Previous Applications</h1>
 	<p class="nmt tac nmt">Edit or Remove Current Wholesale Customers</p>
+	<p class="tac"><%= link_to("Download All", customers_path(format: :csv), class: "",) %></p>
 </section>
 <section class="accent-padding">
 	<% @decision_customers.each do |application| %>

@@ -18,7 +18,12 @@ skip_before_action :authenticate_user!, only: [:new, :create,:index]
     @customer = Customer.find(params[:id]) 
   end 
   def index
-  
+       @customersdownload = Customer.all.order("created_at DESC")
+          respond_to do |format|
+    format.html
+    format.csv { send_data @customersdownload.to_csv, filename: "Applications-#{Date.today}.csv" }
+    end
+
   end 
     def edit
     @customer = Customer.find(params[:id])
