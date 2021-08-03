@@ -14,12 +14,11 @@ skip_before_action :authenticate_user!, only: [:new, :create,:index]
     end 
   end 
   def show
-
     @customer = Customer.find(params[:id]) 
   end 
   def index
-       @customersdownload = Customer.all.order("created_at DESC")
-          respond_to do |format|
+    @customersdownload = Customer.all.order("created_at DESC")
+      respond_to do |format|
     format.html
     format.csv { send_data @customersdownload.to_csv, filename: "Applications-#{Date.today}.csv" }
     end
@@ -31,7 +30,9 @@ skip_before_action :authenticate_user!, only: [:new, :create,:index]
   def update
     @customer = Customer.find(params[:id]) 
      if @customer.update(customer_params)
-      if @customer.status == "Approved"
+      if @customer.status == "Approved - Initial"
+        CustomerMailer.with(customer: @customer).needs_final_approval_customer_email.deliver_later
+      elsif  @customer.status == "Approved - Final"
         new_customer = ShopifyAPI::Customer.new
         new_customer.first_name = @customer.company
         new_customer.last_name = @customer.name
