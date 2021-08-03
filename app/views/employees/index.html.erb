@@ -1,0 +1,54 @@
+<section class="background-lightgray">
+	<section class="small-accent">
+		<div class="fw">
+			<a href="/employees/new"><div class="fw background-pink button">Create New</div></a>
+			<h3 class="tac">Current Sales Reps</h3>
+			<% @employees.each do | employee | %>
+			<div class="flex-container small-info-wrapper">
+				<div class="half border-right">
+					<p class="nm"><b><%= employee.name %></b></p>
+					<p class="subscript nm"><%= employee.email %></p>
+				</div>
+				<div class="half">
+					<p class="tac subscript nm"><%= link_to "Edit", edit_employee_path(employee) %></p>
+   					<p class="tac subscript nm"><%= link_to "Delete", employee_path(employee),
+                  method: :delete %></p>
+				</div>
+			</div>
+			<% end %>
+		</div>
+	</section>
+</section>
+<style>
+	.small-accent { 
+		min-height: fit-content; 
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 400px;
+		margin: 0 auto;
+		padding: 25px;
+		max-width: 100%;
+		border-radius: 10px;
+		background-color: white;
+	}
+	.small-info-wrapper { margin: 20px auto; }
+	.background-lightgray { background-color: whitesmoke; }
+	a { 
+		text-decoration: none; 
+		color: black;
+	}
+	.flex-container { display: flex; align-items: center; }
+	.button { 
+		padding: 12px; 
+		text-align: center;
+		width: 100%;
+		color: white;
+		font-weight: bold;
+		box-sizing: border-box;
+		border-radius: 10px;
+		border: 2px solid gray;
+	}
+	.border-right { border-right: 2px solid gray; }
+	.subscript { font-size: 10pt; }
+</style>
