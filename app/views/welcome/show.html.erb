@@ -1,12 +1,13 @@
 	<section class="small-accent">
 		<div class="fw">
 			<p class="subscript nm tac">Not sure if you have an account?</p>
-			<h3 class="tac nmt">Check Your Account Status</h3>
-		<%= form_for @employee do |f| %>
-			<%= f.text_field :email, placeholder: "Email", class: 'fw'%>
-			<div class="button background-pink"><%= f.submit "Search" %></div>
-		<% end %>
+			<h3 class="tac nm">Check Your Account Status</h3>
+<%= form_tag "/customers", method: "GET" do %>
+<%= text_field_tag :search_by_email, params[:search_by_email], placeholder: "Email", class: 'fw' %>
+ <div class="button background-pink"> <%= submit_tag "Search" %></div>
+<% end %>
 		</div>
+
 	</section>
 </section>
 <style>

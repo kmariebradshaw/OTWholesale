@@ -6,6 +6,11 @@ class WelcomeController < ApplicationController
   	@decision_customers = Customer.all.where.not(:status => "pending")
   end
   def show
-  	@employee = Employee.new 
+  	@customers = Customer.all
+  	 if params[:search_by_email]  != ""
+      @searched_email = @customers.where("email", 
+      "%# {params[:search_by_email]}%")
+    end
+    
   end 
 end
