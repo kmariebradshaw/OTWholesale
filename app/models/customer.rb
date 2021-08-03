@@ -1,6 +1,7 @@
 require 'csv'
 
 class Customer < ApplicationRecord
+	belongs_to :employee
 	mount_uploader :attachement, AttachmentUploader 
 
 	def self.to_csv

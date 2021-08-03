@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :users
   resources :customers
   resources :welcome
+  resources :employees
   root to: redirect('/users/sign_in')
 
 

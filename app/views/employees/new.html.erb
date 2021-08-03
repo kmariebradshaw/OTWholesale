@@ -1,0 +1,60 @@
+
+
+<section class="background-lightgray">
+	<section class="small-accent">
+		<div class="fw">
+			<h3 class="tac">Create New Sales Representative</h3>
+<%= form_for @employee do |f| %>
+	  <%= f.text_field :name, placeholder: "Name", class: 'fw'%>
+   	  <%= f.text_field :email, placeholder: "Email", class: 'fw'%>
+      <div class="button background-pink"><%= f.submit %></div>
+      <p class="subscript tac">or <span class="underline"><a href="/employees">edit an existing employee</a></span></p>
+    <% end %>
+		</div>
+	</section>
+</section>
+<style>
+	.small-accent { 
+		min-height: fit-content; 
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 400px;
+		margin: 0 auto;
+		padding: 25px;
+		max-width: 100%;
+		border-radius: 10px;
+		background-color: white;
+	}
+	.background-lightgray { background-color: whitesmoke; }
+	a { 
+		text-decoration: none; 
+		color: black;
+	}
+	.button { 
+		padding: 12px; 
+		text-align: center;
+		width: 100%;
+		color: white;
+		font-weight: bold;
+		box-sizing: border-box;
+		border-radius: 10px;
+		border: 2px solid gray;
+	}
+	.underline { text-decoration: underline; }
+	input[type="submit"] {
+    	border: none;
+    	background: transparent;
+    	color: white;
+    	font-size: 12pt;
+    	font-weight: bolder;
+	}
+	input[type="text"] {
+		margin-bottom: 10px;
+		width: 100%;
+		padding: 10px;
+		box-sizing: border-box;
+		border: 2px solid whitesmoke;
+		border-radius: 10px;
+	}
+</style>

@@ -4,7 +4,7 @@
 </section>
 <section>
 	<% if @pending_customers.count > 0 %>
-	<h1 class="tac accent">Pending Applications</h1>
+	<h2 class="tac">Pending Applications</h2>
 	<% @pending_customers.each do |application| %>
 		<div class="application-preview">
 		    <p><%= link_to 'Review Application', application %></p>
@@ -16,16 +16,15 @@
 		</div>
 	<% end %>
 	<% else %>
-	<h1 class="tac nm accent">All Caught Up</h1>
-		<p class="nmt tac">No New Applications to Review</p>
+	<h2 class="tac nm">All Caught Up</h2>
+		<p class="nm tac subscript">No New Applications to Review</p>
 	<% end %>
 </section>
 <section class="background-pink">
-	<h1 class="tac accent nm">View Previous Applications</h1>
-	<p class="nmt tac nmt">Edit or Remove Current Wholesale Customers</p>
-	<p class="tac"><%= link_to("Download All", customers_path(format: :csv), class: "",) %></p>
+	<h2 class="tac nm">View Previous Applications</h2>
+	<p class="nm tac subscript">Edit or Remove Current Wholesale Customers</p>
 </section>
-<section class="accent-padding">
+<section class="accent-padding background-lightgray">
 	<% @decision_customers.each do |application| %>
 		<div class="application-preview">
 		    <p><%= link_to 'Review Application', application %> - <%=application.status %></p>
@@ -35,6 +34,5 @@
 	  		<p><b># Of Retail Locations:</b> <%= application.locations %><br></p>
 		 	<p><b>Type of Business:</b> <%= application.legal_status %></p> 
 		</div>
-		<div class="fw border-bottom-pink"></div>
 	<% end %>
 </section>

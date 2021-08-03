@@ -18,13 +18,21 @@
 
   <body>
 
-<p class="navbar-text tar accent-padding-so">
+<div class="navbar-text accent-padding flex-container jcsb">
+    <a href="/"><%= image_tag("logo.png", class: "nav-logo") %></a>
+<div>
 <% if user_signed_in? %>
-  Logged in as <strong><%= current_user.email %></strong> |
+  <%= link_to("Download All", customers_path(format: :csv), class: "",) %>
+
+  <a href="/welcome">Applications</a> 
+  <a href="/employees">Sales Reps</a> 
   <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
 <% end %>
-</p>
+</div>
+</div>
+  <main>
     <%= yield %>
+  </main>
   </body>
 </html>
 <script>
