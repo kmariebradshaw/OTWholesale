@@ -1,0 +1,77 @@
+	<section class="small-accent">
+		<div class="fw">
+			<p class="subscript nm tac">Not sure if you have an account?</p>
+			<h3 class="tac nm">Check Your Account Status</h3>
+			<%= form_tag(search_path, :method => "get") do %>
+				<%= search_field_tag :search, params[:search], placeholder: "Email", class: 'fw' %>
+			 	<div class="button background-pink"> <%= submit_tag "Search" %></div>
+			<% end %>
+			<% if @results %>
+				<% @results.each do | result | %>
+					<% if result.status == "Denied" %>
+						<p class="tac">Your account has been denied, please reach out to our sales team with any questions about this.</p>
+						<% break %>
+					<% elsif result.status == "Approval - Initial" %>
+						<p class="tac">Your account is pending, you will receive an email from us shortly.</p>
+						<% break %>
+					<% elsif result.status == "Approval - Final" %>
+						<p class="tac">Your account is approved!</p>
+						<% if @account %>
+							<p class="tac">You already have an account, if you've forgotten your password please use the link above.</p>
+						<% else %>
+							<p class="tac">You haven't activated your account. To resend the activation email <a href="#{@account.invite.url}">click here.</a></p>
+						<% end %>
+						<% break %>
+					<% else %>
+						<p class="tac">No account found.</p>
+					<% end %>
+				<% end %>
+			<% end %>
+		</div>
+	</section>
+</section>
+<style>
+	.small-accent { 
+		min-height: fit-content; 
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 600px;
+		margin: 0 auto;
+		padding: 25px;
+		max-width: 100%;
+		border-radius: 10px;
+		background-color: white;
+	}
+	.background-lightgray { background-color: whitesmoke; }
+	a { 
+		text-decoration: none; 
+		color: black;
+	}
+	.button { 
+		padding: 12px; 
+		text-align: center;
+		width: 100%;
+		color: white;
+		font-weight: bold;
+		box-sizing: border-box;
+		border-radius: 10px;
+		border: 2px solid gray;
+	}
+	.underline { text-decoration: underline; }
+	input[type="submit"] {
+    	border: none;
+    	background: transparent;
+    	color: white;
+    	font-size: 12pt;
+    	font-weight: bolder;
+	}
+	input[type="text"], input[type="search"] {
+		margin-bottom: 10px;
+		width: 100%;
+		padding: 10px;
+		box-sizing: border-box;
+		border: 2px solid whitesmoke;
+		border-radius: 10px;
+	}
+</style>

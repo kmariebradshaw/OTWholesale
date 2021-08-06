@@ -13,6 +13,13 @@ skip_before_action :authenticate_user!, only: [:new, :create,:index]
       render 'new'
     end 
   end 
+  def search
+    if params[:search].blank?
+    else
+    @parameter = params[:search].downcase
+    @results = Customer.all.where("lower(email) LIKE :search", search: "%#{@parameter}") 
+    end 
+  end 
   def show
     @customer = Customer.find(params[:id]) 
   end 
@@ -80,7 +87,7 @@ skip_before_action :authenticate_user!, only: [:new, :create,:index]
           CustomerMailer.with(customer: @customer).assignment_customer_email.deliver_later
         end 
       end 
-      
+
       redirect_to @customer
     else
       render :edit
