@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   resources :customers
   resources :welcome
   resources :employees
-  root to: redirect('/users/sign_in')
   get '/search', to: "customers#search" 
+  root to: redirect('/users/sign_in')
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
