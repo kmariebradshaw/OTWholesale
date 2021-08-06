@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+  	<h2 style="text-align: center;">Dog-gone it!</h2>
+  	<p style="text-align: center;">We ran into an issue while processing your application.</p>
+	<div style="width: 80%; margin: 0 auto; display: block; height: 5px; background-color: #F6E1D9"></div>
+	<p>Dear <%= @customer.name.split(' ').first %>,</p>
+	<p>We are unable to process your application at this time because of the following issues:</p>
+	<p><b><%= @customer.issues %></b></p> 
+	<p>Please reply to this email with the requested information or with any questions concerning your current application status.</p> 
+	<p>X0X0, Ollie and Team!</p>
+	<%= image_tag(attachments['paw-heart-print.png'].url) %>
+  </body>
+</html>

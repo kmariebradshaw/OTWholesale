@@ -6,12 +6,12 @@
 		<title></title> 
 	</head> 
 	<body style="margin:0 auto; padding:0; background-color:#FFF; max-width: 600px;" > 
-		<h4 style="display:block; font-family:Helvetica; font-size:18px; font-style:normal; font-weight:italic; letter-spacing:0; line-height:1.1; margin-bottom:9px; margin-left:0; margin-right:0; margin-top:0; text-align:center; color:#222">New Application:</h4> 
-	 	<h2 style="display:block; font-family:Helvetica; font-size:32px; font-style:normal; font-weight:bold; letter-spacing:0; line-height:1.1; margin-bottom:16px; margin-left:0; margin-right:0; margin-top:0; text-align:center; color:#222"><%= @customer.company %></h2> 
+		<h4 style="display:block; font-family:Helvetica; font-size:18px; font-style:normal; font-weight:italic; letter-spacing:0; line-height:1.1; margin-bottom:9px; margin-left:0; margin-right:0; margin-top:0; text-align:center; color:#222">New Customer Assignment:</h4> 
+	 	<h2 style="display:block; font-family:Helvetica; font-size:32px; font-style:normal; font-weight:bold; letter-spacing:0; line-height:1.1; margin-bottom:16px; margin-left:0; margin-right:0; margin-top:0; text-align:center; color:#222"><%= @customer.company %> - <%= @customer.status %></h2> 
 	 	<div style="width: 80%; margin: 0 auto; display: block; height: 5px; background-color: #F6E1D9"></div>
-		<p style="color:#222; font-family:Helvetica; font-size:14px; letter-spacing:0; line-height:2; max-width:100%; text-align:left; word-wrap:break-word; padding-top:9px; padding-bottom:9px; padding-left:18px; padding-right:18px">You've received a new application from <%= @customer.name %> at <%= @customer.company %>. Please see below for an application summary along with a link to the application page. This application is awaiting your initial decision.</p> 
+		<p style="color:#222; font-family:Helvetica; font-size:14px; letter-spacing:0; line-height:2; max-width:100%; text-align:left; word-wrap:break-word; padding-top:9px; padding-bottom:9px; padding-left:18px; padding-right:18px">Your have a new assigned customer, <%= @customer.name %> at <%= @customer.company %>. Please see below for a link to the application page and a business summary.</p> 
 		<div style="width: 80%; margin: 0 auto; display: block; height: 5px; background-color: #F6E1D9"></div>
-		<div style="display: flex; align-items: flex-start; box-sizing: border-box">
+<div style="display: flex; align-items: flex-start; box-sizing: border-box">
 			<div style="width: 50%;">
 				<p style="color:#222; font-family:Helvetica; font-size:14px; letter-spacing:0; line-height:2; max-width:100%; text-align:left; word-wrap:break-word; padding-left:18px; padding-right:18px"><b>Business Name:</b> <%= @customer.company %></p>
 				<p style="color:#222; font-family:Helvetica; font-size:14px; letter-spacing:0; line-height:2; max-width:100%; text-align:left; word-wrap:break-word; padding-left:18px; padding-right:18px"><b>DBA:</b> <%= @customer.dba %></p>
@@ -27,7 +27,7 @@
 				<p style="color:#222; font-family:Helvetica; font-size:14px; letter-spacing:0; line-height:2; max-width:100%; text-align:left; word-wrap:break-word; padding-left:18px; padding-right:18px"><b>AP Email Address:</b> <%= @customer.billing_email%></p>
 			</div>
 		</div>
-		<div style="width: 80%; margin: 0 auto; border: 2px solid gray; background-color: #F6E1D9; text-align: center;font-size: 16pt; padding: 5px; border-radius:10px;"><%= link_to 'Review Application', @customer, {:style=>'color:#FFFFFF;text-decoration: none;font-weight: bold;'}%></div>
+		<div style="width: 80%; margin: 0 auto; border: 2px solid gray; background-color: #F6E1D9; text-align: center;font-size: 16pt; padding: 10px; border-radius:10px;"><%= link_to 'Review Application', @customer, {:style=>'color:#FFFFFF;text-decoration: none;font-weight: bold;'}%></div>
 	</body> 
 </html>
 

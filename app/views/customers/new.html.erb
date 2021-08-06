@@ -23,11 +23,11 @@
 <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 <p class="form-header ttu background-pink">Business Information</p>
 <section class="form-section">
-	<%= f.text_field :company, placeholder: "Legal Entity Business Name", class: 'fw'%>
+	<%= f.text_field :company, placeholder: "Legal Entity Business Name", class: 'fw', required: true %>
 	<%= f.text_field :dba, placeholder: "DBA ('Doing Business As' - enter N/A if it doesn't apply)", class: "fw"%>
 	<div class="flex-container-no">
- 		<%= f.text_field :permit, placeholder: "State Resale/Tax Exemption Certificate #", class: "two-thirds fmr" %>
- 		<%= f.text_field :seller_permit_state, placeholder: "State Issued", class: "one-third" %>
+ 		<%= f.text_field :permit, placeholder: "State Resale/Tax Exemption Certificate #", class: "two-thirds fmr", required: true %>
+ 		<%= f.text_field :seller_permit_state, placeholder: "State Issued", class: "one-third", required: true %>
  	</div>
  	<p class=""><b># Of Retail Locations:</b></p>
 	<%= f.radio_button  :locations,"1" %>
@@ -54,32 +54,32 @@
 
 <p class="form-header ttu background-pink">Billing Information</p>
 <section class="form-section">
-	<%= f.text_field :billing_addr , placeholder: "Street Address", class: "fw"%>
+	<%= f.text_field :billing_addr , placeholder: "Street Address", class: "fw", required: true %>
 	<div class="flex-container-no">
-	<%= f.text_field :billing_city, placeholder: "City", class: "two-thirds fmr" %>
-	<%= f.text_field :billing_state, placeholder: "State", class: "one-third fmr" %>
-	<%= f.text_field :billing_zip, placeholder: "Zip Code", class: "one-third" %>
+	<%= f.text_field :billing_city, placeholder: "City", class: "two-thirds fmr", required: true %> 
+	<%= f.text_field :billing_state, placeholder: "State", class: "one-third fmr", required: true %>
+	<%= f.text_field :billing_zip, placeholder: "Zip Code", class: "one-third", required: true %>
 	</div>
- 	<%= f.text_field :billing_ap, placeholder: "AP Contact", class: "fw" %>
- 	<%= f.text_field :billing_phone, placeholder: "AP Phone", class: "fw" %>
-	<%= f.text_field :billing_email, placeholder: "AP Email Address", class: "fw nmb" %>
+ 	<%= f.text_field :billing_ap, placeholder: "AP Contact", class: "fw", required: true %>
+ 	<%= f.text_field :billing_phone, placeholder: "AP Phone", class: "fw", required: true %>
+	<%= f.text_field :billing_email, placeholder: "AP Email Address", class: "fw nmb", required: true %>
 </section>
 
 <p class="form-header ttu background-pink">Shipping Information</p>
 <section class="form-section">
-	<%= f.text_field :shipping_address , placeholder: "Street Address", class: "fw"%>
+	<%= f.text_field :shipping_address , placeholder: "Street Address", class: "fw", required: true  %>
 	<div class="flex-container-no">
-		<%= f.text_field :shipping_location, placeholder: "City", class: "two-thirds fmr nmb" %>
-		<%= f.text_field :shipping_state, placeholder: "State", class: "one-third fmr nmb" %>
-		<%= f.text_field :shipping_zip, placeholder: "Zip Code", class: "one-third nmb" %>
+		<%= f.text_field :shipping_location, placeholder: "City", class: "two-thirds fmr nmb", required: true  %>
+		<%= f.text_field :shipping_state, placeholder: "State", class: "one-third fmr nmb", required: true  %>
+		<%= f.text_field :shipping_zip, placeholder: "Zip Code", class: "one-third nmb", required: true  %>
 	</div>
 </section>
 
 <p class="form-header ttu background-pink">Buyer Contact Information</p>
 <section class="form-section">
-	<%= f.text_field :name, placeholder: "Buyer's Name", class: "fw" %>
-	<%= f.text_field :phone, placeholder: "Buyer's Phone", class: "fw" %>
-	<%= f.text_field :email, placeholder: "Buyer's Email Address", class: "fw" %>
+	<%= f.text_field :name, placeholder: "Buyer's Name", class: "fw", required: true  %>
+	<%= f.text_field :phone, placeholder: "Buyer's Phone", class: "fw", required: true  %>
+	<%= f.text_field :email, placeholder: "Buyer's Email Address", class: "fw", required: true  %>
 	<p><b>Top 3 Selling Lines in your Boutique</b></p>
 	<div class="flex-container-no">
 		<%= f.text_field :top3_1, class: "one-third fmr" %><%= f.text_field :top3_2, class: "one-third fmr"  %><%= f.text_field :top3_3, class: "one-third"  %>
@@ -101,8 +101,8 @@
 		<li>Order Minimums: <b>New Account Initial Order</b> -$1000.00; <b>Reorder</b> -$400.00; <b>Small Order Fee</b> -$40 charge for orders that are placed under the $400 minimum reorder amount.</li>
 		<li>View the full list of the <a href="https://theoliverthomaswholesale.com/pages/terms-and-conditions">Oliver Thomas Terms and Conditions</a></li>
 	</ol>
-	 <p><%= f.check_box :agree1 %> I Agree</p>
-	 <p><%= f.check_box :agree2 %> I represent and warrant that all financial and other information provided to Oliver Thomas in connection with this application and, if accepted, my account, is and will be true.</p>
+	 <p><%= f.check_box :agree1, required: true  %> I Agree</p>
+	 <p><%= f.check_box :agree2, required: true  %> I represent and warrant that all financial and other information provided to Oliver Thomas in connection with this application and, if accepted, my account, is and will be true.</p>
 </section>
 <p class="form-header ttu background-pink">How did you hear about us?</p>
 	<section class="form-section">
@@ -136,7 +136,7 @@
 	</section>
 <p class="form-header ttu background-pink">Upload Resale Certification</p>
 	<section class="form-section">
-		<%= f.file_field :attachement %>
+		<%= f.file_field :attachement, required: true  %>
 	</section>
 
      <%= f.submit "Submit Application", class: "new-submit" %>

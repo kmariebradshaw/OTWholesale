@@ -8,7 +8,20 @@
                   method: :delete %></p>
 </section>
 <section class="tac approval-denial flex-container">
-	<div class="half accent-padding border-right">
+        <div class="half accent-padding border-right">
+        <h3 class="nmt">Sales Rep: 
+        	<% if @customer.employee %>
+        		<%= @customer.employee.name %>
+        	<% else %>
+        		Pending Selection
+        	<% end %>
+        	</h3>
+        <%= form_for(@customer, remote: true, :html => {:class => "ib"}) do |fa| %>
+	    	<%= fa.collection_select :employee_id, Employee.all, :id, :name, {prompt: "Sales Reps"} %><br>
+      		<div class="button background-pink"><%= fa.submit "Update Sales Rep", class: "" %></div>
+        <% end %>
+    </div>
+	<div class="half accent-padding">
 		<h3 class=" nmt">Status: <%= @customer.status %></h3>
 			<% if @customer.status == "pending" %>
 	       		<%= form_for(@customer, remote: true, :html => {:class => "ib fw"}) do |fa| %>
@@ -31,23 +44,23 @@
              	<div class="button background-pink"><%= fa.submit "Deny", class: "decision approval ib" %></div>
           	<% end %>
         </div>
-        <div class="half accent-padding">
-        <h3 class="nmt">Sales Rep: 
-        	<% if @customer.employee %>
-        		<%= @customer.employee.name %>
-        	<% else %>
-        		Pending Selection
-        	<% end %>
-        	</h3>
-        <%= form_for(@customer, remote: true, :html => {:class => "ib"}) do |fa| %>
-	    	<%= fa.collection_select :employee_id, Employee.all, :id, :name, {prompt: "Sales Reps"} %><br>
-      		<div class="button background-pink"><%= fa.submit "Update Sales Rep", class: "" %></div>
-        <% end %>
-    </div>
 </section>
 
 <section>
 	 <p class="tac nm"><%= link_to "Resale Certification", @customer.attachement_url %></p>
+</section>
+<section>
+<h3 class="tac nm"><% if @customer.issues%>Current Issues<% else %>No Current Issues<% end %></h3>
+<p class="tac nmt subscript">*Note: Email will be sent to customer upon submission of the below form.</p>
+<%= form_for(@customer, remote: true, :html => {:class => "ib fw"}) do |fa| %>
+            	<%= fa.text_area :issues, class: "fw text-area" , required: true %>
+            	<% if @customer.issues %>
+            	<div class="button background-pink"> <%= fa.submit "Update Issues", class: "ib" %></div>
+            	<% else %>
+            	<div class="button background-pink"> <%= fa.submit "Add Issues", class: "ib" %></div>
+            	<% end %>
+          		<% end %>
+
 </section>
 <p class="form-header ttu background-pink">Business Information</p>
 	<section class="form-section">
@@ -139,5 +152,11 @@
 .edit-delete {
 	display: inline-block;
 	width: 75px;
+}
+.text-area { 
+	height: 150px;
+	padding: 20px;
+	font-family: 'Helvetica';
+	box-sizing: border-box;
 }
 </style>
