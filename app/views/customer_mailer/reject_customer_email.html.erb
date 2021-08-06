@@ -4,7 +4,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-
+<p>Dear <%= @customer.name.split(' ').first %>,</p>
 <p>Thank you for your interest in Oliver Thomas.</p>
 
 <p>Since the beginning, we set out to prove a business model driven by great, functional, fashionable product.</p>  
@@ -12,5 +12,7 @@
 <p>It is important for us to support our retail partners, many of who believed in us from the beginning.   We have completed our vetting process and unfortunately, at this time, we are unable to place Oliver Thomas in your store.  We will maintain your information on file in the event that anything changes.</p>
 
 <p>X0X0, Ollie and Team!</p>
+<%= image_tag(attachments['paw-heart-print.png'].url) %>
+
   </body>
 </html>

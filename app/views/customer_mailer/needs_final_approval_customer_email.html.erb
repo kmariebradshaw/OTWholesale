@@ -1,53 +1,33 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-<section class="page-header background-pink">
-	<h1 class="nm accent">Oliver Thomas Wholesale Application</h1>
-</section>
-<section class="tac approval-denial" >
-	<h2 class=" nmt">Status: <%= @customer.status %></h2>
-    <p><%= link_to 'Review Application', @customer %></p>
-</section>
-<h2 class="form-header ttu background-pink">Business Information</h2>
-	<section class="form-section">
-		<p><b>Legal Entity Business Name:</b> <%= @customer.company %></p>
-		<p><b>DBA:</b> <%= @customer.dba %></p>
-		<p><b>State Resale/Tax Exemption Certificate #:</b> <%= @customer.permit %> <b>State Issued:</b> <%= @customer.seller_permit_state %></p>
-  		<p><b># Of Retail Locations:</b><%= @customer.locations %><br>
-	 	<p><b>Type of Business:</b> <%= @customer.legal_status %></p>
-	</section>
-<h2 class="form-header ttu background-pink">Billing Information</h2>
-	<section class="form-section">
-		<p><b>Street Address:</b> <%= @customer.billing_addr %></p>
-		<p><b>City:</b> <%= @customer.billing_city %> <b>State:</b> <%= @customer.billing_state %> <b>Zip Code:</b> <%= @customer.billing_zip %></p>
-		<p><b>AP Contact:</b> <%= @customer.billing_ap %></p>
-		<p><b>AP Phone:</b> <%= @customer.billing_phone %></p>
-		<p><b>AP Email Address:</b> <%= @customer.billing_email%></p>
-	</section>
-<h2 class="form-header ttu background-pink">Shipping Information</h2>
-	<section class="form-section">
-		<p><b>Street Address:</b> <%= @customer.shipping_address %></p>
-		<p><b>City:</b> <%= @customer.shipping_location %> <b>State:</b> <%= @customer.shipping_state %> <b>Zip Code:</b> <%= @customer.shipping_zip %></p>
-	</section>
-<h2 class="form-header ttu background-pink">Buyer Contact Information</h2>
-	<section class="form-section">
-		<p><b>Buyer's Name:</b> <%= @customer.name %></p>
-		<p><b>Buyer's Phone:</b> <%= @customer.phone %></p>
-		<p><b>Buyer's Email Address:</b> <%= @customer.email %></p>
-		<p><b>Top 3 Selling Lines in your Boutique</b></p>
-		<ul>
-			<li><%= @customer.top3_1 %></li>
-			<li><%= @customer.top3_2 %></li>
-			<li><%= @customer.top3_3 %></li>
-		</ul>
-		<p><b>Social Media Sites</b></p>
-	    <p><b>Facebook ID:</b> <%= @customer.facebook %></p>
-		<p><b>Instagram Handle:</b> <%= @customer.instagram %></p>
-	</section>
-
-
-  </body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+	<head> 
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+		<meta content="width=device-width, initial-scale=1" name="viewport"/> 
+		<title></title> 
+	</head> 
+	<body style="margin:0 auto; padding:0; background-color:#FFF; max-width: 600px;" > 
+		<h4 style="display:block; font-family:Helvetica; font-size:18px; font-style:normal; font-weight:italic; letter-spacing:0; line-height:1.1; margin-bottom:9px; margin-left:0; margin-right:0; margin-top:0; text-align:center; color:#222">New Application:</h4> 
+	 	<h2 style="display:block; font-family:Helvetica; font-size:32px; font-style:normal; font-weight:bold; letter-spacing:0; line-height:1.1; margin-bottom:16px; margin-left:0; margin-right:0; margin-top:0; text-align:center; color:#222"><%= @customer.company %></h2> 
+	 	<div style="width: 80%; margin: 0 auto; display: block; height: 5px; background-color: #F6E1D9"></div>
+		<p style="color:#222; font-family:Helvetica; font-size:14px; letter-spacing:0; line-height:2; max-width:100%; text-align:left; word-wrap:break-word; padding-top:9px; padding-bottom:9px; padding-left:18px; padding-right:18px">You've received a new application from <%= @customer.name %> at <%= @customer.company %>. Please see below for an application summary along with a link to the application page. This application has gone through initial approval and is waiting for you to finalize.</p> 
+		<div style="width: 80%; margin: 0 auto; display: block; height: 5px; background-color: #F6E1D9"></div>
+		<div style="display: flex; align-items: flex-start; box-sizing: border-box">
+			<div style="width: 50%;">
+				<p style="color:#222; font-family:Helvetica; font-size:14px; letter-spacing:0; line-height:2; max-width:100%; text-align:left; word-wrap:break-word; padding-left:18px; padding-right:18px"><b>Business Name:</b> <%= @customer.company %></p>
+				<p style="color:#222; font-family:Helvetica; font-size:14px; letter-spacing:0; line-height:2; max-width:100%; text-align:left; word-wrap:break-word; padding-left:18px; padding-right:18px"><b>DBA:</b> <%= @customer.dba %></p>
+				<p style="color:#222; font-family:Helvetica; font-size:14px; letter-spacing:0; line-height:2; max-width:100%; text-align:left; word-wrap:break-word; padding-left:18px; padding-right:18px"><b>State Resale/Tax Exemption Certificate #:</b> <%= @customer.permit %> <b>State Issued:</b> <%= @customer.seller_permit_state %></p>
+		  		<p style="color:#222; font-family:Helvetica; font-size:14px; letter-spacing:0; line-height:2; max-width:100%; text-align:left; word-wrap:break-word; padding-left:18px; padding-right:18px"><b># Of Retail Locations:</b><%= @customer.locations %><br>
+			 	<p style="color:#222; font-family:Helvetica; font-size:14px; letter-spacing:0; line-height:2; max-width:100%; text-align:left; word-wrap:break-word; padding-left:18px; padding-right:18px"><b>Type of Business:</b> <%= @customer.legal_status %></p>
+			 </div>
+			<div style="width: 50%;">
+				<p style="color:#222; font-family:Helvetica; font-size:14px; letter-spacing:0; line-height:2; max-width:100%; text-align:left; word-wrap:break-word; padding-left:18px; padding-right:18px"><b>Address:</b> <%= @customer.billing_addr %></p>
+				<p style="color:#222; font-family:Helvetica; font-size:14px; letter-spacing:0; line-height:2; max-width:100%; text-align:left; word-wrap:break-word; padding-left:18px; padding-right:18px"><b>City:</b> <%= @customer.billing_city %> <b>State:</b> <%= @customer.billing_state %> <b>Zip Code:</b> <%= @customer.billing_zip %></p>
+				<p style="color:#222; font-family:Helvetica; font-size:14px; letter-spacing:0; line-height:2; max-width:100%; text-align:left; word-wrap:break-word; padding-left:18px; padding-right:18px"><b>AP Contact:</b> <%= @customer.billing_ap %></p>
+				<p style="color:#222; font-family:Helvetica; font-size:14px; letter-spacing:0; line-height:2; max-width:100%; text-align:left; word-wrap:break-word; padding-left:18px; padding-right:18px"><b>AP Phone:</b> <%= @customer.billing_phone %></p>
+				<p style="color:#222; font-family:Helvetica; font-size:14px; letter-spacing:0; line-height:2; max-width:100%; text-align:left; word-wrap:break-word; padding-left:18px; padding-right:18px"><b>AP Email Address:</b> <%= @customer.billing_email%></p>
+			</div>
+		</div>
+		<div style="width: 80%; margin: 0 auto; border: 2px solid gray; background-color: #F6E1D9; text-align: center;font-size: 16pt; padding: 5px; border-radius:10px;"><%= link_to 'Review Application', @customer, {:style=>'color:#FFFFFF;text-decoration: none;font-weight: bold;'}%></div>
+	</body> 
 </html>
+
