@@ -1,4 +1,5 @@
 require 'csv'
+require 'carrierwave/orm/activerecord'
 
 class Customer < ApplicationRecord
 	belongs_to :employee

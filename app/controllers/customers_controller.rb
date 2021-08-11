@@ -2,6 +2,7 @@ class CustomersController < ApplicationController
 skip_before_action :authenticate_user!, only: [:new, :create,:index, :search]
   def new 
     @customer = Customer.new()
+    @customer.attachement = params[:file]
 	end 
   def create
     @customer = Customer.new(customer_params)
