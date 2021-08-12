@@ -24,7 +24,7 @@
     font-family: 'the_wild_things_script';  
   }
 body, input { font-family: 'Open Sans', sans-serif;}
-section { padding: 20px;}
+section {box-sizing: border-box;}
 h1 { font-size: 36pt;}
 .logo { 
 	max-width: 200px;
@@ -67,7 +67,7 @@ body { margin: 0;}
   .nmb { margin-bottom: 0 !important; }
   .nmt { margin-top: 0; }
   .ttu { text-transform: uppercase; }
-  .background-pink { background-color: #f6e1d9; }
+  .background-pink { background-color: #f6e1d9 !important; }
   .subscript { font-size: 10pt; }
   input { 
     border: none;
@@ -148,10 +148,52 @@ body { margin: 0;}
 }
 .background-lightgray { background-color: whitesmoke; }
 
-.accent-padding { padding: 20px; }
 
 .flex-container-no { display: flex; align-items: center;}
 .two-thirds { width: 66%;}
 .one-third { width: 33%;}
 .fmr { margin-right: 10px !important; }
-.half { width: 50%; }
+.half { width: 50%; box-sizing: border-box; }
+
+@media only screen and (max-width: 588px) {
+  h1 { font-size: 32pt; }
+  .logo { width: 100px; }
+  h2 { font-size: 16pt; }
+  .do.to { display: none; }
+  section { padding: 10px; }
+.accent-padding { padding: 10px; }
+h3 { font-size: 12pt; }
+input[type="submit"], select { font-size: 10pt !important; }
+}
+@media only screen and (min-width: 589px){
+  .mo { display: none; }
+  section { padding: 20px; }
+.accent-padding { padding: 20px; }
+
+}
+.hamburger-wrapper { width: 30px; }
+.hamburger-line { 
+  height: 5px;
+  background-color: black;
+  width: 100%;
+  border-radius: 10px;
+    transition-duration: .25s;
+
+}
+.mobile-nav ul { 
+  list-style: none; 
+  padding-left: 0;
+  margin: 0;
+}
+.mobile-nav ul li { 
+  padding: 10px; 
+  text-align: center;
+  border-bottom: 2px solid whitesmoke;
+  font-weight: bolder;
+  a {color: black;}
+}
+.hamburger-line.second { margin: 3px 0; }
+.hamburger-wrapper.active .hamburger-line.second{ display: none; }
+.hamburger-wrapper.active .hamburger-line:first-of-type { transform: rotate(45deg); }
+.hamburger-wrapper.active .hamburger-line:last-of-type { transform: rotate(-45deg); margin-top: -5px; }
+
