@@ -9,7 +9,7 @@
 </section>
 <section class="tac approval-denial flex-container">
         <div class="half accent-padding border-right">
-        <h3 class="nmt">Sales Rep: 
+        <h3 class="nmt">Sales Rep:<br class="mo"> 
         	<% if @customer.employee %>
         		<%= @customer.employee.name %>
         	<% else %>
@@ -22,7 +22,7 @@
         <% end %>
     </div>
 	<div class="half accent-padding">
-		<h3 class=" nmt">Status: <%= @customer.status %></h3>
+		<h3 class=" nmt">Status:<br class="mo">  <%= @customer.status.capitalize %></h3>
 			<% if @customer.status == "pending" %>
 	       		<%= form_for(@customer, remote: true, :html => {:class => "ib fw"}) do |fa| %>
             		<%= fa.hidden_field :status, :value => "Approved - Initial" %>

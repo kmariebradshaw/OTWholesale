@@ -10,8 +10,21 @@
                   method: :delete %></p>
 </section>
 <section class="tac approval-denial flex-container">
-	<div class="half accent-padding border-right">
-		<h3 class=" nmt">Status: <%= @customer.status %></h3>
+        <div class="half accent-padding border-right">
+        <h3 class="nmt">Sales Rep: <br class="mo"> 
+        	<% if @customer.employee %>
+        		<%= @customer.employee.name %>
+        	<% else %>
+        		Pending Selection
+        	<% end %>
+        	</h3>
+        <%= form_for(@customer, remote: true, :html => {:class => "ib"}) do |fa| %>
+	    	<%= fa.collection_select :employee_id, Employee.all, :id, :name, {prompt: "Sales Reps"} %><br>
+      		<div class="button background-pink"><%= fa.submit "Update Sales Rep", class: "" %></div>
+        <% end %>
+    </div>
+	<div class="half accent-padding">
+		<h3 class=" nmt">Status: <br class="mo"> <%= @customer.status.capitalize %></h3>
 			<% if @customer.status == "pending" %>
 	       		<%= form_for(@customer, remote: true, :html => {:class => "ib fw"}) do |fa| %>
             		<%= fa.hidden_field :status, :value => "Approved - Initial" %>
@@ -33,19 +46,6 @@
              	<div class="button background-pink"><%= fa.submit "Deny", class: "decision approval ib" %></div>
           	<% end %>
         </div>
-        <div class="half accent-padding">
-        <h3 class="nmt">Sales Rep: 
-        	<% if @customer.employee %>
-        		<%= @customer.employee.name %>
-        	<% else %>
-        		Pending Selection
-        	<% end %>
-        	</h3>
-        <%= form_for(@customer, remote: true, :html => {:class => "ib"}) do |fa| %>
-	    	<%= fa.collection_select :employee_id, Employee.all, :id, :name, {prompt: "Sales Reps"} %><br>
-      		<div class="button background-pink"><%= fa.submit "Update Sales Rep", class: "" %></div>
-        <% end %>
-    </div>
 </section>
 
 <section>
@@ -173,7 +173,7 @@
 		<%= f.file_field :attachement %>
 	</section>
 
-     <%= f.submit "Submit Application", class: "new-submit" %>
+     <%= f.submit "Update Application", class: "new-submit background-pink" %>
 <% end %>
 <style>
 	.page-header { padding: 50px; }

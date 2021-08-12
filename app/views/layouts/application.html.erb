@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Otwholesale</title>
+    <title>Oliver Thomas - Wholesale Portal</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'%>
+<%= favicon_link_tag asset_path('favicon.png') %>
+
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,18 +21,32 @@
   <body>
 
 <div class="navbar-text accent-padding flex-container jcsb">
-    <a href="/"><%= image_tag("logo.png", class: "nav-logo") %></a>
-<div>
-<% if user_signed_in? %>
-  <%= link_to("Download All", customers_path(format: :csv), class: "",) %>
-
-  <a href="/welcome">Applications</a> 
-  <a href="/employees">Sales Reps</a> 
-  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-<% end %>
-</div>
+  <a href="/"><%= image_tag("logo.png", class: "nav-logo") %></a>
+  <div class="do to">
+    <% if user_signed_in? %>
+      <%= link_to("Download All", customers_path(format: :csv), class: "",) %>
+      <a href="/welcome">Applications</a> 
+      <a href="/employees">Sales Reps</a> 
+      <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+    <% end %>
+  </div>
+  <div class="mo">
+    <div class="hamburger-wrapper">
+      <div class="hamburger-line"></div>
+      <div class="hamburger-line second"></div>
+      <div class="hamburger-line"></div>
+    </div>
+  </div>
 </div>
   <main>
+  <div class="mobile-nav" style="display: none;">
+    <ul>
+      <li><%= link_to("Download All", customers_path(format: :csv), class: "",) %></li>
+      <li><a href="/welcome">Applications</a></li>
+      <li><a href="/employees">Sales Reps</a></li>
+      <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
+    </ul>
+  </div>
     <%= yield %>
   </main>
   </body>
@@ -39,5 +55,9 @@
   $(document).ajaxSend(function(e, xhr, options) {
     var token = $("meta[name='csrf-token']").attr("content");
     xhr.setRequestHeader("X-CSRF-Token", token);
+  });
+  $('.hamburger-wrapper').click(function() {
+    $(this).toggleClass('active')
+    $('.mobile-nav').slideToggle()
   });
 </script>

@@ -5,11 +5,11 @@
 			<h3 class="tac">Current Sales Reps</h3>
 			<% @employees.each do | employee | %>
 			<div class="flex-container small-info-wrapper">
-				<div class="half border-right">
+				<div class="two-thirds border-right">
 					<p class="nm"><b><%= employee.name %></b></p>
 					<p class="subscript nm"><%= employee.email %></p>
 				</div>
-				<div class="half">
+				<div class="one-third">
 					<p class="tac subscript nm"><%= link_to "Edit", edit_employee_path(employee) %></p>
    					<p class="tac subscript nm"><%= link_to "Delete", employee_path(employee),
                   method: :delete %></p>
