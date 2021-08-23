@@ -2,7 +2,7 @@ class CustomerMailer < ApplicationMailer
   def new_customer_email
     @customer = params[:customer]
 
-    mail(to: ENV['SEND_TO_GMAIL'], subject: "Wholesale: New Application from #{@customer.company}!")
+    mail(to: ENV['SEND_TO_GMAIL'], subject: "Wholesale: New Application from #{@customer.company}!", :cc => "customerservice@theoliverthomas.com")
   end
   def reject_customer_email
   	@customer = params[:customer]
@@ -13,9 +13,9 @@ class CustomerMailer < ApplicationMailer
     @customer = params[:customer]
     attachments.inline["paw-heart-print.png"] = File.read("#{Rails.root}/app/assets/images/paw-heart-print.png")
     if @customer.employee
-    mail(to: @customer.email, subject: "An Issues with Your Oliver Thomas Application", :cc => @customer.employee.email )
+    mail(to: @customer.email, subject: "Issues with Your Oliver Thomas Application", :cc => @customer.employee.email )
   else 
-        mail(to: @customer.email, subject: "An Issues with Your Oliver Thomas Application" )
+        mail(to: @customer.email, subject: "Issues with Your Oliver Thomas Application", :cc => "customerservice@theoliverthomas.com" )
        end 
   end 
   def needs_final_approval_customer_email
