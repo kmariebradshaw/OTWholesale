@@ -31,7 +31,7 @@
 	</div>
 
 </section>
-<section class="accent-padding background-lightgray">
+<section class="accent-padding background-lightgray decision-section">
 	<% @decision_customers.each do |application| %>
 		<% if application.status.downcase == "approved - final" %>
 			<div class="application-preview final">
@@ -56,11 +56,11 @@
 		let filterOn = $(this).attr("id")
 		$(this).addClass('active').siblings().removeClass('active')
 		if (filterOn == "all") {
-			$('.application-preview').show()
+			$('.decision-section .application-preview').show()
 
 		}
 		else {
-			$('.application-preview').hide()
+			$('.decision-section .application-preview').hide()
 			$('.' + filterOn).show();
 		}	
 	})
