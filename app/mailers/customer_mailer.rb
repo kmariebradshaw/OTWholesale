@@ -27,7 +27,7 @@ class CustomerMailer < ApplicationMailer
     mail(to: @customer.employee.email, subject: "New Assigned Customer: #{@customer.company}")
   end
   def rep_initial_approval_customer_email
-    @customer = params[:customer]
+    @customer = params[:customer] 23
     if @customer.employee
       mail(to: @customer.employee.email, subject: "#{@customer.company}'s Application  Has a Status Update - Initial Approval")
     end

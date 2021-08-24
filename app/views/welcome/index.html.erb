@@ -20,13 +20,28 @@
 		<p class="nm tac subscript">No New Applications to Review</p>
 	<% end %>
 </section>
-<section class="background-pink">
+<section class="background-pink tac">
 	<h2 class="tac nm">View Previous Applications</h2>
 	<p class="nm tac subscript">Edit or Remove Current Wholesale Customers</p>
+	<div class="filter-button-wrapper">
+		<div class="filter-button active" id="all">All</div>
+		<div class="filter-button" id="initial">Approved - Initial</div>
+		<div class="filter-button" id="final">Approved - Final</div>
+		<div class="filter-button" id="denied">Denied</div>
+	</div>
+
 </section>
 <section class="accent-padding background-lightgray">
 	<% @decision_customers.each do |application| %>
-		<div class="application-preview">
+		<% if application.status.downcase == "approved - final" %>
+			<div class="application-preview final">
+		<% elsif application.status.downcase == "approved - initial" %>
+			<div class="application-preview initial">
+		<% elsif application.status.downcase == "denied" %>
+			<div class="application-preview denied">
+		<% else %>
+			<div class="application-preview">
+		<% end %>
 		    <p><%= link_to 'Review Application', application %> - <%=application.status %></p>
 			<p><b>Legal Entity Business Name:</b> <%= application.company %></p>
 			<p><b>DBA:</b> <%= application.dba %></p>
@@ -36,3 +51,17 @@
 		</div>
 	<% end %>
 </section>
+<script>
+	$('.filter-button').click(function() {
+		let filterOn = $(this).attr("id")
+		$(this).addClass('active').siblings().removeClass('active')
+		if (filterOn == "all") {
+			$('.application-preview').show()
+
+		}
+		else {
+			$('.application-preview').hide()
+			$('.' + filterOn).show();
+		}	
+	})
+</script>
