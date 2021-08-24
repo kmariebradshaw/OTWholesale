@@ -197,3 +197,20 @@ input[type="submit"], select { font-size: 10pt !important; }
 .hamburger-wrapper.active .hamburger-line:first-of-type { transform: rotate(45deg); }
 .hamburger-wrapper.active .hamburger-line:last-of-type { transform: rotate(-45deg); margin-top: -5px; }
 
+.filter-button {
+    display: inline-block;
+    width: 150px;
+    background: white;
+    text-align: center;
+    border-radius: 10px;
+    padding: 5px;
+    border: 2px solid gray;
+    cursor: pointer;
+    font-size: 10pt;
+    font-weight: bolder;
+}
+.filter-button.active { 
+  background: gray; 
+  color: white;
+}
+.filter-button-wrapper { margin: 20px auto 10px auto; }
