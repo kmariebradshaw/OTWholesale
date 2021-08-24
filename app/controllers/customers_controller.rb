@@ -51,13 +51,14 @@ skip_before_action :authenticate_user!, only: [:new, :create,:index, :search]
       if @previous_status != @customer.status 
         if @customer.status == "Approved - Initial"
           CustomerMailer.with(customer: @customer).needs_final_approval_customer_email.deliver_later
-          new_customer = ShopifyAPI::Customer.new
-          new_customer.first_name = @customer.name.split(' ').first
-          new_customer.last_name = @customer.name.split(' ').last
-          new_customer.company = @customer.company 
-          new_customer.email = @customer.email
-          new_customer.phone = @customer.phone
-          new_customer.save
+            new_customer = ShopifyAPI::Customer.new
+            new_customer.first_name = @customer.name.split(' ').first
+            new_customer.last_name = @customer.name.split(' ').last
+            new_customer.email = @customer.email
+            new_customer.phone = @customer.phone
+            new_customer.save
+            new_customer.addresses =[{"address1": @customer.shipping_address, "city": @customer.shipping_location, "zip": @customer.shipping_zip,"company": @customer.company, "phone": @customer.phone, "province": @customer.shipping_state, "country": "United States"}]
+            new_customer.save
           if @customer.employee 
             CustomerMailer.with(customer: @customer).rep_initial_approval_customer_email.deliver_later
           end 
@@ -68,6 +69,35 @@ skip_before_action :authenticate_user!, only: [:new, :create,:index, :search]
           #  new_customer.default_address.city = @customer.shipping_location
           #  new_customer.default_address.province = @customer.shipping_state
           #  new_customer.default_address.zip = @customer.shipping_zip
+          #           #TEST
+          # uri = URI("https://" + ENV['SHOPIFY_API_KEY'] + ":" + ENV['SHOPIFY_API_PASSWORD']+ "@" + ENV['SHOP_NAME'] + ".myshopify.com/admin/api/2021-07/customers.json")
+          # http = Net::HTTP.new(uri.host, uri.port)
+          # http.use_ssl = true
+          # request = Net::HTTP::Post.new(uri.path, {'Content-Type' => 'application/json'})
+          # request.body = {
+          #   "customer": {
+          #     "first_name": @customer.name.split(' ').first,
+          #     "last_name": @customer.name.split(' ').last,
+          #     "email":  @customer.email,
+          #     "phone": @customer.phone,
+          #     "verified_email": false,
+          #     "addresses": [
+          #       {
+          #         "address1": @customer.shipping_address,
+          #         "city": @customer.shipping_location,
+          #         "province":  @customer.shipping_state,
+          #         "phone": @customer.phone,
+          #         "zip": @customer.shipping_zip,
+          #         "last_name": @customer.name.split(' ').last,
+          #         "first_name": @customer.name.split(' ').first,
+          #         "country": "United States"
+          #       }
+          #     ]
+          #   }
+          # }
+          # response = http.request(request)
+          # body = JSON.parse(response.body)
+          # #END TEST
         elsif  @customer.status == "Approved - Final"
           new_customer = ShopifyAPI::Customer.search(query: "email:#{@customer.email}")
           new_customer.first.send_invite
