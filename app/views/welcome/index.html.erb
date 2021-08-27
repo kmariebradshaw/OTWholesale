@@ -34,11 +34,11 @@
 <section class="accent-padding background-lightgray decision-section">
 	<% @decision_customers.each do |application| %>
 		<% if application.status.downcase == "approved - final" %>
-			<div class="application-preview final">
+			<div class="application-preview final background-green">
 		<% elsif application.status.downcase == "approved - initial" %>
-			<div class="application-preview initial">
+			<div class="application-preview initial background-red">
 		<% elsif application.status.downcase == "denied" %>
-			<div class="application-preview denied">
+			<div class="application-preview denied background-gray">
 		<% else %>
 			<div class="application-preview">
 		<% end %>
