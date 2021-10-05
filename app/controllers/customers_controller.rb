@@ -59,9 +59,7 @@ skip_before_action :authenticate_user!, only: [:new, :create,:index, :search]
             new_customer.save
             new_customer.addresses =[{"address1": @customer.shipping_address, "city": @customer.shipping_location, "zip": @customer.shipping_zip,"company": @customer.company, "phone": @customer.phone, "province": @customer.shipping_state, "country": "United States"}]
             new_customer.save
-          if @customer.employee 
-            CustomerMailer.with(customer: @customer).rep_initial_approval_customer_email.deliver_later
-          end 
+      
           # new_customer.default_address.first_name = @customer.name.split(' ').first
           # new_customer.default_address.last_name = @customer.name.split(' ').last_name
 
