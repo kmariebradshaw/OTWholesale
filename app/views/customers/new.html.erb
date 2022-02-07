@@ -97,14 +97,16 @@
 	<ol>
 		<li>Customers will not sell Oliver Thomas products on their website, social media accounts or any other online avenues unless a prior written agreement with Oliver Thomas (division of Black Diamond Group, Inc.) is in place.</li>
 		<li>Customers will not sell Oliver Thomas products outside of their brick-and-mortar store including pop-ups, seasonal markets, etc.</li>
-		<li>There is no selling below MSRP.</li>
 		<li>Order Minimums: <b>New Account Initial Order</b> -$1200.00; <b>Reorder</b> -$550.00; <b>Small Order Fee</b> -$40 charge for orders that are placed under the $550 minimum reorder amount.</li>
 		<li>Accounts must maintain $1,650 annually to remain active wholesale clients.</li>
 		<li>View the full list of the <a href="https://theoliverthomaswholesale.com/pages/terms-and-conditions">Oliver Thomas Terms and Conditions</a></li>
 		<li>View and agree to the full list of conditions for <a href="https://theoliverthomaswholesale.com/pages/shipping-and-returns">Shipping and Returns</a></li>
 
 	</ol>
-	 <p><%= f.check_box :agree1, required: true  %> I Agree</p>
+		 <p><%= f.check_box :agree1, required: true  %> I Agree</p>
+
+	  <p><%= f.check_box :agree3, required: true  %>
+I agree not to sell below MSRP.</p>
 	 <p><%= f.check_box :agree2, required: true  %> I represent and warrant that all financial and other information provided to Oliver Thomas in connection with this application and, if accepted, my account is and will be true.</p>
 </section>
 <p class="form-header ttu background-pink">How did you hear about us?</p>
