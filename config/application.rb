@@ -6,6 +6,8 @@ require 'csv'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+config.time_zone = 'Eastern Time (US & Canada)'
+
 module Otwholesale
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
