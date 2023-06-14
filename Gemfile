@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.3'
+ruby '3.2.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'rails', '~> 6.1.4'
+gem 'rails'
 # Use sqlite3 as the database for Active Record
  gem 'sqlite3', group: :development
- gem 'pg', group: :production# Use Puma as the app server
+ gem 'pg', '1.5.3', group: :production# Use Puma as the app server
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -24,7 +24,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'fog-aws'
 gem 'devise'
-gem 'shopify_api'
+gem 'shopify_api', '9.4.1'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'carrierwave'
 # Use Active Storage variant
