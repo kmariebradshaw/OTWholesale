@@ -1,3 +1,5 @@
+<% if @pdf == false %>
+
 <section class="page-header background-pink tac">
 	<a href="/"><%= image_tag("logo.png", class: "logo") %></a>
 	<h1 class="nm accent">Oliver Thomas Wholesale Application</h1>
@@ -48,6 +50,7 @@
 
 <section>
 	 <p class="tac nm"><%= link_to "Resale Certification", @customer.attachement_url %></p>
+	 <p class="tac nm"><a href="?pdf">Format for PDF</a></p>
 </section>
 <section>
 <h3 class="tac nm"><% if @customer.issues%>Current Issues<% else %>No Current Issues<% end %></h3>
@@ -62,18 +65,53 @@
           		<% end %>
 
 </section>
+<% else %>
+
+<style>
+.navbar-text { display: none !important; }
+main { padding-top: 0 !important;  }
+</style>
+
+
+<section class="page-header background-pink tac">
+	<%= image_tag("logo.png", class: "logo") %>
+	<h1 class="nm accent">Oliver Thomas Wholesale Application</h1>
+</section>
+
+<section class="form-faq">
+	<p class="tac">Ollie is thrilled that you are applying to be part of the Oliver Thomas family!</p>
+	<p>Please complete and submit the following documents</p>
+	<ol>
+		<li>Wholesale Application Form (this form)</li>
+		<li>Your State Resale Certificate - <a href="https://theoliverthomaswholesale.com/pages/tax-forms" target="_blank">click here to download an electronic PDF for your state</a> (application cannot be approved without a signed copy)</li>
+	</ol>
+	<p class="nmb">For assistance, please email <a href="mailto: Ollie@TheOliverThomas.com">Ollie@TheOliverThomas.com</a> or call customer service (833) 221-0345.</p>
+	<p class="subscript nmt">Once we receive all your information, we will review and send a notification email with further directions (typically 2 - 4 business days).</p>
+</section>
+
+
+
+
+
+
+<% end %>
 <p class="form-header ttu background-pink">Business Information</p>
 	<section class="form-section">
 		<p><b>Legal Entity Business Name:</b> <%= @customer.company %></p>
 		<p><b>DBA:</b> <%= @customer.dba %></p>
-		<p><b>State Resale/Tax Exemption Certificate #:</b> <%= @customer.permit %> <b>State Issued:</b> <%= @customer.seller_permit_state %></p>
-  		<p><b># Of Retail Locations:</b><%= @customer.locations %><br>
+		<p><b>State Resale/Tax Exemption Certificate #:</b> <%= @customer.permit %></p>
+		<p><b>State Issued:</b> <%= @customer.seller_permit_state %></p>
+  		<p><b># Of Retail Locations:</b> <%= @customer.locations %><br>
 	 	<p><b>Type of Business:</b> <%= @customer.legal_status %></p>
+	 	 	<p class="subscript"><em><span class="ttu">Note:</span> Oliver Thomas (A Division of Black Diamond Group) must be promptly informed of any later changes in your legal status.</em></p>
+
 	</section>
 <p class="form-header ttu background-pink">Billing Information</p>
 	<section class="form-section">
 		<p><b>Street Address:</b> <%= @customer.billing_addr %></p>
-		<p><b>City:</b> <%= @customer.billing_city %> <b>State:</b> <%= @customer.billing_state %> <b>Zip Code:</b> <%= @customer.billing_zip %></p>
+		<p><b>City:</b> <%= @customer.billing_city %></p>
+		<p> <b>State:</b> <%= @customer.billing_state %> </p>
+		<p><b>Zip Code:</b> <%= @customer.billing_zip %></p>
 		<p><b>AP Contact:</b> <%= @customer.billing_ap %></p>
 		<p><b>AP Phone:</b> <%= @customer.billing_phone %></p>
 		<p><b>AP Email Address:</b> <%= @customer.billing_email%></p>
@@ -81,7 +119,9 @@
 <p class="form-header ttu background-pink">Shipping Information</p>
 	<section class="form-section">
 		<p><b>Street Address:</b> <%= @customer.shipping_address %></p>
-		<p><b>City:</b> <%= @customer.shipping_location %> <b>State:</b> <%= @customer.shipping_state %> <b>Zip Code:</b> <%= @customer.shipping_zip %></p>
+		<p><b>City:</b> <%= @customer.shipping_location %></p>
+		<p><b>State:</b> <%= @customer.shipping_state %> </p>
+		<p><b>Zip Code:</b> <%= @customer.shipping_zip %></p>
 	</section>
 <p class="form-header ttu background-pink">Buyer Contact Information</p>
 	<section class="form-section">
@@ -94,10 +134,27 @@
 			<li><%= @customer.top3_2 %></li>
 			<li><%= @customer.top3_3 %></li>
 		</ul>
-		<p><b>Social Media Sites</b></p>
+		<p><b>Social Media Sites</b> (Enter N/A if Not Applicable):</p>
 	    <p><b>Facebook ID:</b> <%= @customer.facebook %></p>
 		<p><b>Instagram Handle:</b> <%= @customer.instagram %></p>
 	</section>
+	<p class="form-header ttu background-pink">Terms and Conditions</p>
+<section>
+	<p><b>If you are accepted as a vendor of Oliver Thomas, you will abide by the following terms and conditions:</b></p>
+	<ol>
+		<li>Customers will not sell Oliver Thomas products on their website, social media accounts or any other online avenues unless a prior written agreement with Oliver Thomas (division of Black Diamond Group, Inc.) is in place.</li>
+		<li>Customers will not sell Oliver Thomas products outside of their brick-and-mortar store including pop-ups, seasonal markets, etc.</li>
+		<li>Order Minimums: <b>New Account Initial Order</b> -$1200.00; <b>Reorder</b> -$625.00; <b>Small Order Fee</b> -$40 charge for orders that are placed under the $550 minimum reorder amount.</li>
+		<li>Accounts must maintain $2,000 annually to remain active wholesale clients.</li>
+		<li>View the full list of the <a href="https://theoliverthomaswholesale.com/pages/terms-and-conditions">Oliver Thomas Terms and Conditions</a></li>
+		<li>View and agree to the full list of conditions for <a href="https://theoliverthomaswholesale.com/pages/shipping-and-returns">Shipping and Returns</a></li>
+		<li>The wholesale partner is responsible for all returns from consumers that have purchased from the wholesale entity.  Oliver Thomas does not accept returns from wholesale direct consumers. </li>
+	</ol>
+		 <p><input type="checkbox" checked>I Agree</p>
+
+	  <p><input type="checkbox" checked>I agree not to sell below MSRP.</p>
+	 <p><input type="checkbox" checked>I represent and warrant that all financial and other information provided to Oliver Thomas in connection with this application and, if accepted, my account is and will be true.</p>
+</section>
 
 <style>
 		.background-lightgray { background-color: whitesmoke; }
