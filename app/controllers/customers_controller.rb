@@ -23,6 +23,11 @@ skip_before_action :authenticate_user!, only: [:new, :create,:index, :search]
   end 
   def show
     @customer = Customer.find(params[:id]) 
+    if params.has_key?(:'pdf')
+      @pdf = true 
+    else 
+      @pdf = false 
+    end 
   end 
   def index
     @customersdownload = Customer.all.order("created_at DESC")
