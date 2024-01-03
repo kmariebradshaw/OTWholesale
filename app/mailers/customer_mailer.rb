@@ -21,6 +21,7 @@ class CustomerMailer < ApplicationMailer
   def needs_final_approval_customer_email
   	  @customer = params[:customer]
   	  mail(to: ENV['SEND_TO_FINANCE'], subject: "A New Application from #{@customer.company} Needs Your Approval.")
+      mail(to: ENV['SEND_TO_ALAN'], subject: "A New Application from #{@customer.company} Needs Your Approval.")
   end 
   def assignment_customer_email
     @customer = params[:customer]
