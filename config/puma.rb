@@ -38,7 +38,6 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 # process behavior so workers use less memory.
 #
 # preload_app!
-web: bundle exec puma -C config/puma.rb
 
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
