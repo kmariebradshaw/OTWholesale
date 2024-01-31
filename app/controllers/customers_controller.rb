@@ -54,7 +54,7 @@ skip_before_action :authenticate_user!, only: [:new, :create,:index, :search]
 
       # status update
       if @previous_status != @customer.status 
-        if @customer.status == "Approved - Initial"
+        if @customer.status == "Approved - Initial" 
           CustomerMailer.with(customer: @customer).needs_final_approval_customer_email.deliver_later
             new_customer = ShopifyAPI::Customer.new
             new_customer.first_name = @customer.name.split(' ').first
@@ -101,6 +101,16 @@ skip_before_action :authenticate_user!, only: [:new, :create,:index, :search]
           # response = http.request(request)
           # body = JSON.parse(response.body)
           # #END TEST
+        elsif  @customer.status == "Repush - Approved - Initial"
+            new_customer = ShopifyAPI::Customer.new
+            new_customer.first_name = @customer.name.split(' ').first
+            new_customer.last_name = @customer.name.split(' ').last
+            new_customer.email = @customer.email
+            new_customer.phone = @customer.phone
+            new_customer.save
+            new_customer.addresses =[{"address1": @customer.shipping_address, "city": @customer.shipping_location, "zip": @customer.shipping_zip,"company": @customer.company, "phone": @customer.phone, "province": @customer.shipping_state, "country": "United States"}]
+            new_customer.save
+      
         elsif  @customer.status == "Approved - Final"
           new_customer = ShopifyAPI::Customer.search(query: "email:#{@customer.email}")
           new_customer.first.send_invite
