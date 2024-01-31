@@ -5,8 +5,6 @@
     "@babel/core": "@^7.0.0-0",
     "@babel/plugin-proposal-private-methods": "^7.0.0",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.0",
-        "node": "16.18.1",
-
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
