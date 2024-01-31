@@ -20,8 +20,9 @@
   "devDependencies": {
     "webpack-dev-server": "^3"
   },
-   "scripts": {
-    "start": "rails server"
-  }
+ "scripts": {
+   "start": "node index.js"
+}
+
 
 }
