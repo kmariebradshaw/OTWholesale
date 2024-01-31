@@ -1,6 +1,9 @@
 {
   "name": "otwholesale",
   "private": true,
+    "engines": {
+    "node": "20.3.0"
+  },
   "dependencies": {
     "@babel/core": "^7.0.0-0",
     "@babel/plugin-proposal-private-methods": "^7.0.0",
@@ -17,4 +20,5 @@
   "devDependencies": {
     "webpack-dev-server": "^3"
   }
+
 }
