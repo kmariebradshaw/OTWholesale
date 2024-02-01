@@ -28,6 +28,8 @@
 		<div class="filter-button" id="initial">Approved - Initial</div>
 		<div class="filter-button" id="final">Approved - Final</div>
 		<div class="filter-button" id="denied">Denied</div>
+		<div class="filter-button" id="archived">Archived</div>
+
 	</div>
 
 </section>
@@ -39,6 +41,8 @@
 			<div class="application-preview initial background-red">
 		<% elsif application.status.downcase == "denied" %>
 			<div class="application-preview denied background-gray">
+		<% elsif application.status.downcase == "archived" %>
+			<div class="application-preview archived">
 		<% else %>
 			<div class="application-preview">
 		<% end %>
