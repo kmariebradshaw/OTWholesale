@@ -61,7 +61,7 @@
 	<%= f.text_field :billing_zip, placeholder: "Zip Code", class: "one-third", required: true %>
 	</div>
  	<%= f.text_field :billing_ap, placeholder: "AP Contact", class: "fw", required: true %>
- 	<%= f.text_field :billing_phone, placeholder: "AP Phone", class: "fw", required: true %>
+ 	<%= f.number_field :billing_phone, placeholder: "AP Phone", class: "fw", required: true %>
 	<%= f.email_field :billing_email, placeholder: "AP Email Address", class: "fw nmb", required: true %>
 </section>
 
@@ -78,7 +78,7 @@
 <p class="form-header ttu background-pink">Buyer Contact Information</p>
 <section class="form-section">
 	<%= f.text_field :name, placeholder: "Buyer's Name", class: "fw", required: true  %>
-	<%= f.text_field :phone, placeholder: "Buyer's Phone", class: "fw", required: true  %>
+	<%= f.number_field :phone, placeholder: "Buyer's Phone", class: "fw", required: true  %>
 	<%= f.email_field :email, placeholder: "Buyer's Email Address", class: "fw", required: true  %>
 	<p><b>Top 3 Selling Lines in your Boutique</b></p>
 	<div class="flex-container-no">
