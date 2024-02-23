@@ -8,6 +8,13 @@
 	<h1 class="tac nm"><%= @customer.company %></h1>
 	<p class="nmt tac"><%= link_to "Edit", edit_customer_path(@customer), class: 'edit-delete' %>  |  <%= link_to "Delete", customer_path(@customer), class: 'edit-delete',
                   method: :delete %></p>
+         	<%  if @user.admin == true %>
+	            	<%= form_for(@customer, remote: true, :html => {:class => "ib fw"}) do |fa| %>
+	            		<%= fa.hidden_field :status, :value => "Repush to Shopify" %>
+
+	            	<div class="button background-pink"> <%= fa.submit "Repush to Shopify", class: "decision approval ib" %></div>
+	            	<% end %>
+            	<% end %>
 </section>
 <section class="tac approval-denial flex-container">
         <div class="half accent-padding border-right">
@@ -25,7 +32,7 @@
     </div>
 	<div class="half accent-padding">
 		<h3 class=" nmt">Status:<br class="mo">  <%= @customer.status.capitalize %></h3>
-			<% if @customer.status == "pending" %>
+		<% if @customer.status == "pending" %>
 	       		<%= form_for(@customer, remote: true, :html => {:class => "ib fw"}) do |fa| %>
             		<%= fa.hidden_field :status, :value => "Approved - Initial" %>
             	<div class="button background-pink"> <%= fa.submit "Approve - Initial", class: "decision approval ib" %></div>
@@ -37,7 +44,7 @@
 
             	<div class="button background-pink"> <%= fa.submit "Approve - Final", class: "decision approval ib" %></div>
             	<% end %>
-            
+         
             <% else %>
             	<%= form_for(@customer, remote: true, :html => {:class => "ib fw"}) do |fa| %>
             		<%= fa.hidden_field :status, :value => "Approved - Initial" %>
