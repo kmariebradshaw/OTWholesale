@@ -23,6 +23,7 @@ skip_before_action :authenticate_user!, only: [:new, :create,:index, :search]
   end 
   def show
     @customer = Customer.find(params[:id]) 
+    @user = current_user 
     if params.has_key?(:'pdf')
       @pdf = true 
     else 
@@ -101,7 +102,7 @@ skip_before_action :authenticate_user!, only: [:new, :create,:index, :search]
           # response = http.request(request)
           # body = JSON.parse(response.body)
           # #END TEST
-        elsif  @customer.status == "Repush - Approved - Initial"
+        elsif  @customer.status == "Repush to Shopify"
             new_customer = ShopifyAPI::Customer.new
             new_customer.first_name = @customer.name.split(' ').first
             new_customer.last_name = @customer.name.split(' ').last
@@ -110,6 +111,8 @@ skip_before_action :authenticate_user!, only: [:new, :create,:index, :search]
             new_customer.save
             new_customer.addresses =[{"address1": @customer.shipping_address, "city": @customer.shipping_location, "zip": @customer.shipping_zip,"company": @customer.company, "phone": @customer.phone, "province": @customer.shipping_state, "country": "United States"}]
             new_customer.save
+            @customer.status = @previous_status 
+            @customer.save
       
         elsif  @customer.status == "Approved - Final"
           new_customer = ShopifyAPI::Customer.search(query: "email:#{@customer.email}")
