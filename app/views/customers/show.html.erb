@@ -67,8 +67,22 @@
 	 <p class="tac nm"><a href="?pdf">Format for PDF</a></p>
 </section>
 <section>
+<h3 class="tac nm">Notes</h3>
+
+<p class="tac nmt subscript">*This is private and will not be shared with the customer.</p>
+<%= form_for(@customer, remote: true, :html => {:class => "ib fw"}) do |fa| %>
+            	<%= fa.text_area :note, class: "fw text-area" , required: true %>
+            	<% if @customer.note %>
+            	<div class="button background-pink"> <%= fa.submit "Update Notes", class: "ib" %></div>
+            	<% else %>
+            	<div class="button background-pink"> <%= fa.submit "Add Notes", class: "ib" %></div>
+            	<% end %>
+          		<% end %>
+
+</section>
+<section>
 <h3 class="tac nm"><% if @customer.issues%>Current Issues<% else %>No Current Issues<% end %></h3>
-<p class="tac nmt subscript">*Note: Email will be sent to customer upon submission of the below form.</p>
+<p class="tac nmt subscript" style="color: red;">*Email will be sent to customer upon submission of the below form.</p>
 <%= form_for(@customer, remote: true, :html => {:class => "ib fw"}) do |fa| %>
             	<%= fa.text_area :issues, class: "fw text-area" , required: true %>
             	<% if @customer.issues %>
