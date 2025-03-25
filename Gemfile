@@ -6,7 +6,7 @@ ruby '3.2.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails'
 # Use sqlite3 as the database for Active Record
- gem 'sqlite3', group: :development
+gem 'sqlite3', '~> 1.4', group: :development
  gem 'pg', '1.5.3', group: :production# Use Puma as the app server
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
@@ -27,8 +27,10 @@ gem 'devise'
 gem 'shopify_api', '9.4.1'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'carrierwave'
+gem 'telephone_number'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
+gem 'concurrent-ruby', '1.3.4'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false

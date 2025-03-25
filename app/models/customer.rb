@@ -4,6 +4,7 @@ require 'carrierwave/orm/activerecord'
 class Customer < ApplicationRecord
 	belongs_to :employee
 	mount_uploader :attachement, AttachmentUploader 
+  validates :billing_phone, phone: true
 
 	def self.to_csv
     CSV.generate do |csv|
