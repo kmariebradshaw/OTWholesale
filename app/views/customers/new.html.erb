@@ -7,7 +7,10 @@
 	<%= image_tag("logo.png", class: "logo") %>
 	<h1 class="nm accent">Oliver Thomas Wholesale Application</h1>
 </section>
+<section id="errors">
 
+
+</section>
 <section class="form-faq">
 	<p class="tac">Ollie is thrilled that you are applying to be part of the Oliver Thomas family!</p>
 	<p>Please complete and submit the following documents</p>
@@ -19,7 +22,17 @@
 	<p class="subscript nmt">Once we receive all your information, we will review and send a notification email with further directions (typically 2 - 4 business days).</p>
 </section>
 
-<%= form_for @customer, :remote => true do |f| %>
+
+<%= form_for @customer do |f| %>
+<% if @customer.errors.any? %>
+      <p class="tac subscript error-message" style="margin-bottom: 20px;">We're sorry, but an error occurred.<br> If this continues, please contact us a <a href="mailto:customerservice@theoliverthomas.com" class="">customerservice@theoliverthomas.com</a></p>
+            <ul class="tac">
+        <% @customer.errors.full_messages.each do |msg| %>
+          <li class="subscript text-red" style="list-style: none; color: red;"><%= msg %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
 <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 <p class="form-header ttu background-pink">Business Information</p>
 <section class="form-section">
@@ -144,7 +157,7 @@ I agree not to sell below MSRP.</p>
 		<%= f.file_field :attachement, required: true  %>
 	</section>
 
-     <%= f.submit "Submit Application", class: "new-submit" %>
+     <%= f.submit "Submit Application", class: "new-submit", data:{turbo: false} %>
 <% end %>
 <style>
 	.page-header { padding: 50px; }

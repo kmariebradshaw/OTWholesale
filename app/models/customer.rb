@@ -4,8 +4,11 @@ require 'carrierwave/orm/activerecord'
 class Customer < ApplicationRecord
 	belongs_to :employee
 	mount_uploader :attachement, AttachmentUploader 
-  validates :billing_phone, phone: true
+   validates :legal_status, presence: true
 
+ validates :billing_phone,   :presence => {:message => 'Please include only numbers, and include your area code (no country code required)'},
+                     :numericality => true,
+                     :length => { :minimum => 9, :maximum => 10 }
 	def self.to_csv
     CSV.generate do |csv|
       csv << %w{ company dba permit seller_permit_state locations legal_status billing_addr billing_city billing_state billing_zip billing_ap billing_phone billing_email shipping_address shipping_city shipping_state shipping_zip name email billing_phone top3_1 top3_2 top3_3 facebook instagram agree1 agree2 referral_source referral_source_other status created_at } 
@@ -14,4 +17,5 @@ class Customer < ApplicationRecord
       end
     end
   end
+
 end
