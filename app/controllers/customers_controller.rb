@@ -11,7 +11,7 @@ skip_before_action :authenticate_user!, only: [:new, :create,:index, :search]
       CustomerMailer.with(customer: @customer).new_customer_email.deliver_later
       redirect_to '/customers'
     else
-      render 'new'
+render :new, status: :unprocessable_entity
     end 
   end 
   def search
