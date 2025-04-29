@@ -65,7 +65,7 @@ render :new, status: :unprocessable_entity
             new_customer.save
             new_customer.addresses =[{"address1": @customer.shipping_address, "city": @customer.shipping_location, "zip": @customer.shipping_zip,"company": @customer.company, "phone": @customer.phone, "province": @customer.shipping_state, "country": "United States"}]
             new_customer.save
-      
+
           # new_customer.default_address.first_name = @customer.name.split(' ').first
           # new_customer.default_address.last_name = @customer.name.split(' ').last_name
 
@@ -113,18 +113,28 @@ render :new, status: :unprocessable_entity
             new_customer.save
             @customer.status = @previous_status 
             @customer.save
-      
+          
+
         elsif  @customer.status == "Approved - Final"
           new_customer = ShopifyAPI::Customer.search(query: "email:#{@customer.email}")
           new_customer.first.send_invite
           if @customer.employee 
             CustomerMailer.with(customer: @customer).rep_final_approval_customer_email.deliver_later
           end 
+             
+
         elsif @customer.status == "Denied"
           CustomerMailer.with(customer: @customer).reject_customer_email.deliver_later
           if @customer.employee 
             CustomerMailer.with(customer: @customer).rep_denial_customer_email.deliver_later
           end 
+              
+
+        
+                elsif @customer.status == "Archived"
+
+              redirect_to '/'
+ 
         end
       end 
         # rep update
@@ -135,7 +145,6 @@ render :new, status: :unprocessable_entity
         end 
       end 
 
-      redirect_to @customer
     else
       render :edit
     end
