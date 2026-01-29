@@ -66,42 +66,6 @@ render :new, status: :unprocessable_entity
             new_customer.addresses =[{"address1": @customer.shipping_address, "city": @customer.shipping_location, "zip": @customer.shipping_zip,"company": @customer.company, "phone": @customer.phone, "province": @customer.shipping_state, "country": "United States"}]
             new_customer.save
 
-          # new_customer.default_address.first_name = @customer.name.split(' ').first
-          # new_customer.default_address.last_name = @customer.name.split(' ').last_name
-
-          #  new_customer.default_address.address1 = @customer.shipping_address
-          #  new_customer.default_address.city = @customer.shipping_location
-          #  new_customer.default_address.province = @customer.shipping_state
-          #  new_customer.default_address.zip = @customer.shipping_zip
-          #           #TEST
-          # uri = URI("https://" + ENV['SHOPIFY_API_KEY'] + ":" + ENV['SHOPIFY_API_PASSWORD']+ "@" + ENV['SHOP_NAME'] + ".myshopify.com/admin/api/2021-07/customers.json")
-          # http = Net::HTTP.new(uri.host, uri.port)
-          # http.use_ssl = true
-          # request = Net::HTTP::Post.new(uri.path, {'Content-Type' => 'application/json'})
-          # request.body = {
-          #   "customer": {
-          #     "first_name": @customer.name.split(' ').first,
-          #     "last_name": @customer.name.split(' ').last,
-          #     "email":  @customer.email,
-          #     "phone": @customer.phone,
-          #     "verified_email": false,
-          #     "addresses": [
-          #       {
-          #         "address1": @customer.shipping_address,
-          #         "city": @customer.shipping_location,
-          #         "province":  @customer.shipping_state,
-          #         "phone": @customer.phone,
-          #         "zip": @customer.shipping_zip,
-          #         "last_name": @customer.name.split(' ').last,
-          #         "first_name": @customer.name.split(' ').first,
-          #         "country": "United States"
-          #       }
-          #     ]
-          #   }
-          # }
-          # response = http.request(request)
-          # body = JSON.parse(response.body)
-          # #END TEST
         elsif  @customer.status == "Repush to Shopify"
             new_customer = ShopifyAPI::Customer.new
             new_customer.first_name = @customer.name.split(' ').first
@@ -118,19 +82,18 @@ render :new, status: :unprocessable_entity
         elsif  @customer.status == "Approved - Final"
           new_customer = ShopifyAPI::Customer.search(query: "email:#{@customer.email}")
           new_customer.first.send_invite
+          trigger_netgain_sync(@customer)
           if @customer.employee 
             CustomerMailer.with(customer: @customer).rep_final_approval_customer_email.deliver_later
           end 
-             
 
         elsif @customer.status == "Denied"
           CustomerMailer.with(customer: @customer).reject_customer_email.deliver_later
+          trigger_netgain_sync(@customer)
           if @customer.employee 
             CustomerMailer.with(customer: @customer).rep_denial_customer_email.deliver_later
           end 
-              
 
-        
                 elsif @customer.status == "Archived"
 
               redirect_to '/'
@@ -144,10 +107,13 @@ render :new, status: :unprocessable_entity
           CustomerMailer.with(customer: @customer).assignment_customer_email.deliver_later
         end 
       end 
+    force_reload_and_redirect(@customer)
 
     else
       render :edit
     end
+
+
   end 
   def destroy
     @customer = Customer.find(params[:id])
@@ -158,5 +124,8 @@ render :new, status: :unprocessable_entity
   def customer_params
       params.require(:customer).permit(:attachement, :company, :dba, :permit, :seller_permit_state, :locations, :legal_status, :billing_addr, :billing_city, :billing_state, :billing_zip, :billing_ap, :billing_phone, :billing_email, :shipping_location, :shipping_address, :shipping_state, :shipping_zip, :name, :email, :phone, :top3_1, :top3_2, :top3_3, :facebook, :instagram, :agree1, :agree2, :signed, :referral_source, :referral_source_other, :status, :employee_id, :issues, :note)
   end 
+  def trigger_netgain_sync(customer)
+    Integrations::Supersync::CustomerSync.new(customer).call
+  end
 end
 

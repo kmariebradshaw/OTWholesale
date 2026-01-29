@@ -11,6 +11,7 @@ module Otwholesale
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.time_zone = 'Eastern Time (US & Canada)'
+config.autoload_paths << Rails.root.join("app/services")
 
 config.before_configuration do
   env_file = File.join(Rails.root, 'config', 'local_env.yml')
