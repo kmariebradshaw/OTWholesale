@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+require "base64"
 require "net/http"
 require "uri"
 require "json"
@@ -15,27 +15,29 @@ module Integrations
       def initialize(customer)
         @customer = customer
       end
-
       def call
         uri = URI.parse(ENDPOINT)
-
         http = Net::HTTP.new(uri.host, uri.port)
         http.use_ssl = true
 
         request = Net::HTTP::Post.new(uri.request_uri)
-        request.basic_auth(
-          Rails.application.credentials.dig(:supersync, :username),
-          Rails.application.credentials.dig(:supersync, :password)
-        )
         request["Content-Type"] = "application/json"
 
-        request.body = payload.to_json
-
-        Rails.logger.info("[Netgain] OUTGOING PAYLOAD: #{request.body}")
-
+        token_id = Rails.application.credentials.dig(:netgain, :token_id)
+        secret   = Rails.application.credentials.dig(:netgain, :secret)
+        request.basic_auth(token_id, secret)
+        
         response = http.request(request)
+        request.body = payload.to_json
+        
+        if response.is_a?(Net::HTTPSuccess)
+          Rails.logger.info("[Netgain] Customer #{@customer.id} synced successfully")
+        else
+          Rails.logger.error("[Netgain] Error #{response.code}: #{response.body}")
+        end
 
-        handle_response(response)
+
+        
       end
 
       private
