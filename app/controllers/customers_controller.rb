@@ -86,7 +86,6 @@ render :new, status: :unprocessable_entity
           if @customer.employee 
             CustomerMailer.with(customer: @customer).rep_final_approval_customer_email.deliver_later
           end 
-             
 
         elsif @customer.status == "Denied"
           CustomerMailer.with(customer: @customer).reject_customer_email.deliver_later
@@ -94,9 +93,7 @@ render :new, status: :unprocessable_entity
           if @customer.employee 
             CustomerMailer.with(customer: @customer).rep_denial_customer_email.deliver_later
           end 
-              
 
-        
                 elsif @customer.status == "Archived"
 
               redirect_to '/'
@@ -110,10 +107,13 @@ render :new, status: :unprocessable_entity
           CustomerMailer.with(customer: @customer).assignment_customer_email.deliver_later
         end 
       end 
+    force_reload_and_redirect(@customer)
 
     else
       render :edit
     end
+
+
   end 
   def destroy
     @customer = Customer.find(params[:id])

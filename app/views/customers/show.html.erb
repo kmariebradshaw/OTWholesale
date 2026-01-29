@@ -33,29 +33,29 @@
 	<div class="half accent-padding">
 		<h3 class=" nmt">Status:<br class="mo">  <%= @customer.status.capitalize %></h3>
 		<% if @customer.status == "pending" %>
-	       		<%= form_for(@customer, remote: true, :html => {:class => "ib fw"}) do |fa| %>
+	       		<%= form_for(@customer,  :html => {:class => "ib fw"}) do |fa| %>
             		<%= fa.hidden_field :status, :value => "Approved - Initial" %>
             	<div class="button background-pink"> <%= fa.submit "Approve - Initial", class: "decision approval ib" %></div>
           		<% end %>
 
           	<% elsif @customer.status == "Approved - Initial" %>
-          		<%= form_for(@customer, remote: true, :html => {:class => "ib fw"}) do |fa| %>
+          		<%= form_for(@customer,  :html => {:class => "ib fw"}) do |fa| %>
             		<%= fa.hidden_field :status, :value => "Approved - Final" %>
 
             	<div class="button background-pink"> <%= fa.submit "Approve - Final", class: "decision approval ib" %></div>
             	<% end %>
          
             <% else %>
-            	<%= form_for(@customer, remote: true, :html => {:class => "ib fw"}) do |fa| %>
+            	<%= form_for(@customer,  :html => {:class => "ib fw"}) do |fa| %>
             		<%= fa.hidden_field :status, :value => "Approved - Initial" %>
             	<div class="button background-pink"> <%= fa.submit "Approve - Initial", class: "decision approval ib" %></div>
           		<% end %>
           	<% end %>
-          	<%= form_for(@customer, remote: true, :html => {:class => "ib fw"}) do |fa| %>
+          	<%= form_for(@customer,  :html => {:class => "ib fw"}) do |fa| %>
             	<%= fa.hidden_field :status, :value => "Denied" %>
              	<div class="button background-pink"><%= fa.submit "Deny", class: "decision approval ib" %></div>
           	<% end %>
-          		<%= form_for(@customer, remote: true, :html => {:class => "ib fw"}) do |fa| %>
+          		<%= form_for(@customer,  :html => {:class => "ib fw"}) do |fa| %>
             		<%= fa.hidden_field :status, :value => "Archived" %>
             	<div class="button background-gray"> <%= fa.submit "Archive", class: "decision approval ib" %></div>
           		<% end %>
