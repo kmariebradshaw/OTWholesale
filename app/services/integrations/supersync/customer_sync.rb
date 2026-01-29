@@ -8,7 +8,7 @@ require "securerandom"
 module Integrations
   module Supersync
     class CustomerSync
-      ENDPOINT = "https://dev.supersync.cloud/webhook/v3/customer/3038".freeze
+      ENDPOINT = "https://supersync.cloud/webhook/v3/customer/7237".freeze
       SOURCE_SYSTEM = "oliverthomas_wholesale".freeze
       PACKET_TYPE = "customer_information".freeze
 
@@ -91,10 +91,10 @@ module Integrations
           referral_source: @customer.referral_source,
           referral_source_other: @customer.referral_source_other,
 
-          status: "Denied",
+          status: @customer.status,
 
           attachement: @customer.attachement&.url,
-          employee_id: @customer.employee_id,
+          employee_id: @customer.employee&.email,
           issues: @customer.issues,
           note: @customer.note
         }
