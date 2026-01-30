@@ -1,5 +1,7 @@
 class CustomersController < ApplicationController
-skip_before_action :authenticate_user!, only: [:new, :create,:index, :search]
+  before_action :setup_shopify, only: [:update]
+
+
   def new 
     @customer = Customer.new()
     @customer.attachement = params[:file]
