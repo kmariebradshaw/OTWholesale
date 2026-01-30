@@ -1,5 +1,4 @@
 class CustomersController < ApplicationController
-  before_action :setup_shopify, only: [:update]
 
 
   def new 
