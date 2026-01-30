@@ -108,7 +108,6 @@ render :new, status: :unprocessable_entity
           CustomerMailer.with(customer: @customer).assignment_customer_email.deliver_later
         end 
       end 
-    force_reload_and_redirect(@customer)
 
     else
       render :edit
