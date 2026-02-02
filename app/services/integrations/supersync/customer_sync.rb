@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "base64"
 require "net/http"
 require "uri"
@@ -15,10 +16,11 @@ module Integrations
       def initialize(customer)
         @customer = customer
       end
+
       def call
         uri = URI.parse(ENDPOINT)
         http = Net::HTTP.new(uri.host, uri.port)
-        http.use_ssl = true
+        http.use_ssl = (uri.scheme == "https")
 
         request = Net::HTTP::Post.new(uri.request_uri)
         request["Content-Type"] = "application/json"
@@ -26,18 +28,38 @@ module Integrations
         token_id = Rails.application.credentials.dig(:netgain, :token_id)
         secret   = Rails.application.credentials.dig(:netgain, :secret)
         request.basic_auth(token_id, secret)
-        
+
+        request_payload = payload
+        request.body = request_payload.to_json
+
+        # Log outbound request (redact auth)
+        Rails.logger.info({
+          event: "third_party_request",
+          endpoint: ENDPOINT,
+          customer_id: @customer.id,
+          request_id: request_payload[:request_id],
+          headers: request.to_hash.except("authorization"),
+          payload: request_payload
+        }.to_json)
+
         response = http.request(request)
-        request.body = payload.to_json
-        
+
+        Rails.logger.info({
+          event: "third_party_response",
+          endpoint: ENDPOINT,
+          customer_id: @customer.id,
+          request_id: request_payload[:request_id],
+          status: response.code.to_i,
+          body: response.body
+        }.to_json)
+
         if response.is_a?(Net::HTTPSuccess)
           Rails.logger.info("[Netgain] Customer #{@customer.id} synced successfully")
         else
           Rails.logger.error("[Netgain] Error #{response.code}: #{response.body}")
         end
 
-
-        
+        response
       end
 
       private
@@ -54,6 +76,9 @@ module Integrations
 
       def customer_payload
         data = {
+          id: @customer.id,
+          created_at: @customer.created_at&.utc&.iso8601,
+          
           company: @customer.company,
           dba: @customer.dba,
           permit: @customer.permit,
@@ -67,7 +92,7 @@ module Integrations
           billing_state: @customer.billing_state,
           billing_zip: @customer.billing_zip,
           billing_phone: @customer.billing_phone,
-          billing_email: @customer.billing_email,
+          billing_email: @customer.billing_email.to_s,
 
           shipping_location: @customer.shipping_location,
           shipping_address: @customer.shipping_address,
@@ -75,7 +100,7 @@ module Integrations
           shipping_zip: @customer.shipping_zip,
 
           name: @customer.name,
-          email: @customer.email,
+          email: @customer.email.to_s,
           phone: @customer.phone,
 
           top3_1: @customer.top3_1,
@@ -95,25 +120,13 @@ module Integrations
 
           status: @customer.status,
 
-          attachement: @customer.attachement&.url,
-          employee_id: @customer.employee&.email,
+          attachement: @customer.attachement&.url.to_s,
+          employee_id: @customer.employee&.email.to_s,
           issues: @customer.issues,
           note: @customer.note
         }
 
         data.reject { |_, v| v.nil? || v == "" }
-      end
-
-      def handle_response(response)
-        if response.code.to_i.between?(200, 299)
-          Rails.logger.info("[Netgain] Customer #{@customer.id} synced successfully")
-          true
-        else
-          Rails.logger.error(
-            "[Netgain] Error #{response.code}: #{response.body}"
-          )
-          false
-        end
       end
     end
   end
