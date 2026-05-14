@@ -14,6 +14,11 @@
 
 	            	<div class="button background-pink"> <%= fa.submit "Repush to Shopify", class: "decision approval ib" %></div>
 	            	<% end %>
+	            		<%= form_for(@customer, remote: true, :html => {:class => "ib fw"}) do |fa| %>
+	            		<%= fa.hidden_field :status, :value => "Repush to Netsuite" %>
+
+	            	<div class="button background-pink"> <%= fa.submit "Repush to Netsuite", class: "decision approval ib" %></div>
+	            	<% end %>
             	<% end %>
 </section>
 <section class="tac approval-denial flex-container">
