@@ -77,8 +77,11 @@ render :new, status: :unprocessable_entity
             new_customer.save
             @customer.status = @previous_status 
             @customer.save
+        elsif  @customer.status == "Repush to Netsuite"
+            trigger_netgain_sync(@customer)
+            @customer.status = @previous_status 
+            @customer.save
           
-
         elsif  @customer.status == "Approved - Final"
           new_customer = ShopifyAPI::Customer.search(query: "email:#{@customer.email}")
           new_customer.first.send_invite
