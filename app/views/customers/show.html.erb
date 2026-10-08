@@ -9,12 +9,12 @@
 	<p class="nmt tac"><%= link_to "Edit", edit_customer_path(@customer), class: 'edit-delete' %>  |  <%= link_to "Delete", customer_path(@customer), class: 'edit-delete',
                   method: :delete %></p>
          	<%  if @user.admin == true %>
-	            	<%= form_for(@customer, remote: true, :html => {:class => "ib fw"}) do |fa| %>
+	            	<%= form_for(@customer, remote: false, :html => {:class => "ib fw"}) do |fa| %>
 	            		<%= fa.hidden_field :status, :value => "Repush to Shopify" %>
 
 	            	<div class="button background-pink"> <%= fa.submit "Repush to Shopify", class: "decision approval ib" %></div>
 	            	<% end %>
-	            		<%= form_for(@customer, remote: true, :html => {:class => "ib fw"}) do |fa| %>
+	            		<%= form_for(@customer, remote: false, :html => {:class => "ib fw"}) do |fa| %>
 	            		<%= fa.hidden_field :status, :value => "Repush to Netsuite" %>
 
 	            	<div class="button background-pink"> <%= fa.submit "Repush to Netsuite", class: "decision approval ib" %></div>
@@ -30,7 +30,7 @@
         		Pending Selection
         	<% end %>
         	</h3>
-        <%= form_for(@customer, remote: true, :html => {:class => "ib"}) do |fa| %>
+        <%= form_for(@customer, remote: false, :html => {:class => "ib"}) do |fa| %>
 	    	<%= fa.collection_select :employee_id, Employee.all, :id, :name, {prompt: "Sales Reps"} %><br>
       		<div class="button background-pink"><%= fa.submit "Update Sales Rep", class: "" %></div>
         <% end %>
@@ -39,12 +39,12 @@
 		<h3 class=" nmt">Status:<br class="mo">  <%= @customer.status.capitalize %></h3>
 		<% if @customer.status == "pending" %>
 	       		<%= form_for(@customer,  :html => {:class => "ib fw"}) do |fa| %>
-            		<%= fa.hidden_field :status, remote: true, :value => "Approved - Initial" %>
+            		<%= fa.hidden_field :status, remote: false, :value => "Approved - Initial" %>
             	<div class="button background-pink"> <%= fa.submit "Approve - Initial", class: "decision approval ib" %></div>
           		<% end %>
 
           	<% elsif @customer.status == "Approved - Initial" %>
-          		<%= form_for(@customer, remote: true, :html => {:class => "ib fw"}) do |fa| %>
+          		<%= form_for(@customer, remote: false, :html => {:class => "ib fw"}) do |fa| %>
             		<%= fa.hidden_field :status, :value => "Approved - Final" %>
 
             	<div class="button background-pink"> <%= fa.submit "Approve - Final", class: "decision approval ib" %></div>
@@ -52,16 +52,16 @@
          
             <% else %>
             	<%= form_for(@customer,  :html => {:class => "ib fw"}) do |fa| %>
-            		<%= fa.hidden_field :status, remote: true, :value => "Approved - Initial" %>
+            		<%= fa.hidden_field :status, remote: false, :value => "Approved - Initial" %>
             	<div class="button background-pink"> <%= fa.submit "Approve - Initial", class: "decision approval ib" %></div>
           		<% end %>
           	<% end %>
           	<%= form_for(@customer,  :html => {:class => "ib fw"}) do |fa| %>
-            	<%= fa.hidden_field :status, remote: true, :value => "Denied" %>
+            	<%= fa.hidden_field :status, remote: false, :value => "Denied" %>
              	<div class="button background-pink"><%= fa.submit "Deny", class: "decision approval ib" %></div>
           	<% end %>
           		<%= form_for(@customer,  :html => {:class => "ib fw"}) do |fa| %>
-            		<%= fa.hidden_field :status,remote: true, :value => "Archived" %>
+            		<%= fa.hidden_field :status,remote: false, :value => "Archived" %>
             	<div class="button background-gray"> <%= fa.submit "Archive", class: "decision approval ib" %></div>
           		<% end %>
         </div>
@@ -75,7 +75,7 @@
 <h3 class="tac nm">Notes</h3>
 
 <p class="tac nmt subscript">*This is private and will not be shared with the customer.</p>
-<%= form_for(@customer, remote: true, :html => {:class => "ib fw"}) do |fa| %>
+<%= form_for(@customer, remote: false, :html => {:class => "ib fw"}) do |fa| %>
             	<%= fa.text_area :note, class: "fw text-area" , required: true %>
             	<% if @customer.note %>
             	<div class="button background-pink"> <%= fa.submit "Update Notes", class: "ib" %></div>
@@ -88,7 +88,7 @@
 <section>
 <h3 class="tac nm"><% if @customer.issues%>Current Issues<% else %>No Current Issues<% end %></h3>
 <p class="tac nmt subscript" style="color: red;">*Email will be sent to customer upon submission of the below form.</p>
-<%= form_for(@customer, remote: true, :html => {:class => "ib fw"}) do |fa| %>
+<%= form_for(@customer, remote: false, :html => {:class => "ib fw"}) do |fa| %>
             	<%= fa.text_area :issues, class: "fw text-area" , required: true %>
             	<% if @customer.issues %>
             	<div class="button background-pink"> <%= fa.submit "Update Issues", class: "ib" %></div>

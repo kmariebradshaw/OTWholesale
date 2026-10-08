@@ -99,26 +99,29 @@ render :new, status: :unprocessable_entity
             CustomerMailer.with(customer: @customer).rep_denial_customer_email.deliver_later
           end 
 
-                elsif @customer.status == "Archived"
 
-              redirect_to '/'
  
         end
       end 
-        # rep update
+      # rep update
       if @previous_rep != @customer.employee
-        if @previous_rep 
-        else 
-          CustomerMailer.with(customer: @customer).assignment_customer_email.deliver_later
-        end 
-      end 
+        unless @previous_rep
+          CustomerMailer.with(customer: @customer)
+                        .assignment_customer_email
+                        .deliver_later
+        end
+      end
 
+      # Load a fresh page after the update and its follow-up actions.
+      if @customer.status == "Archived"
+        redirect_to root_path, status: :see_other
+      else
+        redirect_to customer_path(@customer), status: :see_other
+      end
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
-
-
-  end 
+  end
   def destroy
     @customer = Customer.find(params[:id])
     @customer.destroy
