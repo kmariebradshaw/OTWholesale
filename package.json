@@ -2,7 +2,8 @@
   "name": "otwholesale",
   "private": true,
     "engines": {
-    "node": "16.18.1"
+    "node": "24.x",
+    "yarn": "1.22.22"
   },
   "dependencies": {
     "@babel/core": "^7.0.0-0",
@@ -17,6 +18,9 @@
     "webpack-cli": "^3.3.12"
   },
   "version": "0.1.0",
+  "resolutions": {
+    "compression-webpack-plugin": "6.1.2"
+  },
   "devDependencies": {
     "webpack-dev-server": "^3"
   },

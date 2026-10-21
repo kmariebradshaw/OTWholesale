@@ -1,13 +1,18 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.2.1'
+ruby '3.4.11'
+
+# Ruby 3.4 ships these as bundled gems; Rails 6.1 and CSV exports need them.
+gem 'bigdecimal', '~> 3.1'
+gem 'csv', '~> 3.3'
+gem 'mutex_m', '~> 0.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'rails'
+gem 'rails', '~> 6.1.7'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.4', group: :development
- gem 'pg', '1.5.3', group: :production# Use Puma as the app server
+gem 'pg', '1.5.9', group: :production
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -52,6 +57,8 @@ group :development do
 end
 
 group :test do
+  # Rails 6.1's parallel test runner requires this bundled Ruby library.
+  gem 'drb', '~> 2.2'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver'
