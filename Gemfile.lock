@@ -73,6 +73,7 @@ GEM
     base64 (0.2.0)
     bcrypt (3.1.20)
     benchmark (0.4.0)
+    bigdecimal (3.3.1)
     bindex (0.8.1)
     bootsnap (1.18.4)
       msgpack (~> 1.2)
@@ -96,6 +97,7 @@ GEM
       ssrf_filter (~> 1.0)
     concurrent-ruby (1.3.4)
     crass (1.0.6)
+    csv (3.3.6)
     date (3.4.1)
     devise (4.9.4)
       bcrypt (~> 3.0)
@@ -107,6 +109,7 @@ GEM
     dotenv-rails (3.1.7)
       dotenv (= 3.1.7)
       railties (>= 6.1)
+    drb (2.2.3)
     erubi (1.13.1)
     excon (1.2.5)
       logger
@@ -170,9 +173,11 @@ GEM
       benchmark
       logger
     mini_mime (1.1.5)
+    mini_portile2 (2.8.9)
     minitest (5.25.5)
     msgpack (1.8.0)
     multi_json (1.15.0)
+    mutex_m (0.3.0)
     net-imap (0.5.6)
       date
       net-protocol
@@ -188,7 +193,7 @@ GEM
     nokogiri (1.18.3-x86_64-linux-gnu)
       racc (~> 1.4)
     orm_adapter (0.5.0)
-    pg (1.5.3)
+    pg (1.5.9)
     public_suffix (6.0.1)
     puma (5.6.9)
       nio4r (~> 2.0)
@@ -268,6 +273,8 @@ GEM
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
+    sqlite3 (1.7.3)
+      mini_portile2 (~> 2.8.0)
     sqlite3 (1.7.3-arm64-darwin)
     sqlite3 (1.7.3-x86_64-linux)
     ssrf_filter (1.2.0)
@@ -307,23 +314,28 @@ GEM
 
 PLATFORMS
   arm64-darwin-21
+  arm64-darwin-25
   x86_64-linux
 
 DEPENDENCIES
+  bigdecimal (~> 3.1)
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
   carrierwave
   concurrent-ruby (= 1.3.4)
+  csv (~> 3.3)
   devise
   dotenv-rails
+  drb (~> 2.2)
   fog-aws
   jbuilder (~> 2.7)
   listen (~> 3.3)
-  pg (= 1.5.3)
+  mutex_m (~> 0.3)
+  pg (= 1.5.9)
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
-  rails
+  rails (~> 6.1.7)
   sass-rails (>= 6)
   selenium-webdriver
   shopify_api (= 9.4.1)
@@ -337,7 +349,7 @@ DEPENDENCIES
   webpacker (~> 5.0)
 
 RUBY VERSION
-   ruby 3.2.1p31
+   ruby 3.4.11p137
 
 BUNDLED WITH
-   2.4.14
+   2.6.9
